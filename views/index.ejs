@@ -9,9 +9,22 @@
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhRJTsjh6AQfCteNZLQChLzSJUy2_PQMY&callback=initMap"></script>
   </head>
 
   <body>
     <h1>Hello World!</h1>
+    <div id="map" style="width: 500px; height: 500px;"></div>
+    <script>
+        var map;
+        function initMap(){
+          map = new google.maps.Map(document.getElementById('map'), {
+            zoom:11,
+            center: new google.maps.LatLng(49.2827, -123.11934),
+            mapTypeId: 'terrain'
+          });
+        }
+      </script>
   </body>
 </html>
