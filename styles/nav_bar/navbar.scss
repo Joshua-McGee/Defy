@@ -1,0 +1,30 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100vw;
+  height: 50px;
+  background-color: #7E7DA4;
+  // opacity: 25%; will need to do this once all the backgrounds are layed out to achive proper color
+}
+
+a {
+  text-decoration: none;
+  display: flex;
+  color: #ADABC9;
+  font-size: 1rem;
+  padding: 10px 8px;
+}
+
+.rightbox {
+  flex-grow: 2;
+  vertical-align: middle;
+  display: flex;
+  justify-content: flex-end
+}
+
+a:hover{
+ color: #F6A49C;
+}
