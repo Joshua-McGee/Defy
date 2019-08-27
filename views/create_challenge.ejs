@@ -7,15 +7,28 @@
 
   <title>Create Challenge</title>
 
+  <link href="https://fonts.googleapis.com/css?family=Oxygen:300,400,700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="../styles/background/background.css">
   <link rel="stylesheet" href="../styles/nav_bar/navbar.css">
-
+  <link rel="stylesheet" href="../styles/create_challenges.css">
 
 </head>
-<body>
+<body class="background-image">
+    <% include partials/navbar %>
 
+  <div class="flex-center margin-top">
+    <h3>I challenge <button class="pop-up-form">...</button> to </h3>
+  </div>
+  <div class="flex-center">
+    <h3><button class="pop-up-form">...</button> at <button class="pop-up-form">...</button></h3>
+  </div>
+
+  <div class="flex-center">
+  <a href="/api/challenges"><button class="buttonstyle"><h4>Create Challenge</h4></button></a>
+    </div>
 </body>
 </html>

@@ -9,10 +9,10 @@ h1 {
 
 h3 {
   color: rgba(126, 125, 164, 1.0);
-  letter-spacing: .05em;
+  letter-spacing: .03em;
   word-spacing: .3em;
-  font-size: 2rem;
   font-weight: 300;
+  font-size: 2rem;
   margin-left: 12%;
   margin-top: 5px;
 }
@@ -22,6 +22,8 @@ h3 {
 }
 
 p {
+  font-size: 1.2em;
+  font-weight: 600;
   margin-top: 10px;
   margin-bottom: 10px;
 }
