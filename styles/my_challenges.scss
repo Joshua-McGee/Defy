@@ -1,50 +1,89 @@
+$break-large: 1420px;
+
 body{
   margin: 0;
   padding: 0;
   border: none;
+  overflow-x: hidden;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
   .challenges_content {
     display: flex;
     width: 100%;
-    margin: 32px;
     margin-top: 90px;
+
+
+    @media screen and (max-width: $break-large) {
+      margin-top: 60px;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .challenge_filter_wrapper {
+      width: 95%;
+      text-align: center;
+      font-size: 50px;
+    }
 
     .map_wrapper {
       width: 50%;
+
+      @media screen and (max-width: $break-large) {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
       #map{
         height: 500px;
         width: 95%;
         border: 1px solid black;
+        background-color: black;
+
+        @media screen and (max-width: $break-large) {
+          width: 95%;
+          height: 70vh;
+        }
       }
 
       .challenge_filter_wrapper {
 
         margin-bottom: 35px;
+        color: #ADABC9;
 
         span {
-          font-size: 43px;
+          font-size: 40px;
         }
 
         input {
           height: 43px;
-          background-color: none;
+          width: 300px;
+          background-color: inherit;
           outline: none;
           border: none;
-          border-bottom: 2px solid black;
+          border-bottom: 2px solid orange;
+          color: orange;
+          font-size: 40px;
+          text-align: center;
         }
       }
     }
 
     .challenges_wrapper {
       width: 45%;
+      overflow-y: scroll;
+
+      @media screen and (max-width: $break-large) {
+        width: 90%;
+      }
 
       .challenges {
         display: flex;
         height: 191px;
         border: 1px solid purple;
         background-color: #ADABC9;
+        margin-bottom: 20px;
 
         .content {
           display: flex;
@@ -84,6 +123,7 @@ body{
         .abstract {
           display: flex;
           margin-top: 30px;
+          font-size: 25px;
           justify-content: space-around;
         }
 
