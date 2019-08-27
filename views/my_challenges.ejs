@@ -4,9 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <link rel="stylesheet" href="../styles/navbar.css">
+  <link rel="stylesheet" href="../styles/my_challenges.css">
+  <link rel="stylesheet" href="../styles/background/background.css">
+  <title></title>
 </head>
-<body>
+<body class="background-image">
+  <% include partials/navbar %>
 
+  <div class="challenges_content">
+    <div class="map_wrapper">
+      <div class="challenge_filter_wrapper">
+        <span>Current ongoing and upcoming challenges in Vancouver sorted by</span>
+        <input class="challenge_filter" type="text" />
+      </div>
+      <div id="map"></div>
+    </div>
+    <div class="challenges_wrapper">
+      <div class="challenges">
+        <div class="label"></div>
+        <div class="image">
+          <img src="../images/controller.png" />
+        </div>
+        <div class="content">
+          <div class="metadata">
+            <div class="title">Jenga</div>
+            <div class="date">Sept 5 8:00pm</div>
+          </div>
+          <div class="abstract">The world's best Jenga player challenges you to a team battle.</div>
+        </div>
+        <div class="accept">
+          <button>Accept</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
