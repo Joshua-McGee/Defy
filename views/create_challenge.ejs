@@ -6,22 +6,25 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <title>Create Challenge</title>
-
+  <!--font-->
   <link href="https://fonts.googleapis.com/css?family=Oxygen:300,400,700&display=swap" rel="stylesheet">
-
+  <!--Stylesheets-->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="../styles/background/background.css">
   <link rel="stylesheet" href="../styles/nav_bar/navbar.css">
   <link rel="stylesheet" href="../styles/create_challenges.css">
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="../scripts/app.js"></script>
 
 </head>
 <body class="background-image">
     <% include partials/navbar %>
 
   <div class="flex-center margin-top">
-    <h3>I challenge <button class="pop-up-form">...</button> to </h3>
+    <h3>I challenge <button class="pop-up-form" onclick="openNav()">...</button> to </h3>
   </div>
   <div class="flex-center">
     <h3><button class="pop-up-form">...</button> at <button class="pop-up-form">...</button></h3>
@@ -29,6 +32,55 @@
 
   <div class="flex-center">
   <a href="/api/challenges"><button class="buttonstyle"><h4>Create Challenge</h4></button></a>
+  </div>
+
+    <!-- The First overlay -->
+    <div id="myNav" class="overlay">
+    <!-- Button to close the overlay navigation -->
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <!-- Overlay content -->
+      <div class="overlay-content">
+        <h5 class="top-text">What is the maximum number of challengers you can have?</h5>
+          <textarea id="challenge-number" class="form-submit" name="text" placeholder="max occupancy"></textarea>
+          <h5 class="or-text">OR</h5>
+          <button id ="challenge-everyone" class="everybody"><h6>No limit</h6></button>
+        <h5 class="second-form">What kind of challenge is it?</h5>
+
+        <!--Checkbox containers-->
+        <label class="container">Physical
+            <input type="radio" checked="checked" name="radio">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container">Mental
+            <input type="radio" name="radio">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container">Game
+            <input type="radio" name="radio">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container">Random
+            <input type="radio" name="radio">
+            <span class="checkmark"></span>
+          </label>
+          <!-- Submit button needs to send data to body-->
+          <button id="first-submit" class="submit"><h6>Submit</h6></button>
+      </div>
     </div>
+
+  <!-- Use any element to open/show the overlay navigation menu -->
+  <script>
+    /* Open */
+      function openNav() {
+        console.log('im open');
+        document.getElementById("myNav").style.display = "block";
+      }
+
+      /* Close */
+      function closeNav() {
+        console.log('im closed');
+        document.getElementById("myNav").style.display = "none";
+      }
+  </script>
 </body>
 </html>
