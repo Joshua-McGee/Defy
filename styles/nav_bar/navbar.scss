@@ -1,30 +1,31 @@
-.navbar {
+nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 10px;
-  padding-right: 10px;
   width: 100vw;
   height: 50px;
   background-color: rgba(126, 125, 164, 0.25);
   // opacity: 25%; will need to do this once all the backgrounds are layed out to achive proper color
-}
+  div {
+    display: flex;
+  }
 
-a {
-  text-decoration: none;
-  display: flex;
-  color: #ADABC9;
-  font-size: 1rem;
-  padding: 10px 8px;
-}
+  a {
+    text-decoration: none;
+    display: flex;
+    color: #ADABC9;
+    font-size: 1rem;
+    padding: 10px 8px;
 
-.rightbox {
-  flex-grow: 2;
-  vertical-align: middle;
-  display: flex;
-  justify-content: flex-end
-}
+    &:hover{
+      color: #F6A49C;
+     }
+  }
 
-a:hover{
- color: #F6A49C;
+  .rightbox {
+    flex-grow: 2;
+    vertical-align: middle;
+    display: flex;
+    justify-content: flex-end;
+  }
 }
