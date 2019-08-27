@@ -1,8 +1,8 @@
 .background-image {
-  width: 100%;
+  background-image: url("../../images/backgroundimage.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   z-index: -1;
-  //height: 100vw;
-  background-image: url("../../images/vanflatdesign.png");
-  background-size:  cover;
 }
 

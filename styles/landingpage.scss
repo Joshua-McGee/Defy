@@ -1,0 +1,47 @@
+h1 {
+  color: rgba(232, 120, 148, .85);
+  font-size: 3rem;
+  letter-spacing: .2em;
+  margin-left: 12%;
+  margin-top: 120px;
+  margin-bottom: 0;
+}
+
+h3 {
+  color: rgba(126, 125, 164, 1.0);
+  letter-spacing: .05em;
+  word-spacing: .3em;
+  font-size: 2rem;
+  font-weight: 300;
+  margin-left: 12%;
+  margin-top: 5px;
+}
+
+.color-text{
+    color: rgba(232, 120, 148, .85);
+}
+
+p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.buttonstyle {
+  margin-left: 12%;
+  background-color: transparent;
+  border-radius: 30px;
+  border: 3px solid rgba(246, 164, 156, 1.0);
+  color: rgb(173, 171, 201);
+  letter-spacing: .09em;
+  padding: 1px 50px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+
+  &:hover {
+    background-color: rgba(246, 164, 156, 1.0);
+    color: #372F45;
+    cursor: pointer;
+  }
+}
