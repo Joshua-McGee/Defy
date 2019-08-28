@@ -1,0 +1,361 @@
+.form-selector {
+  border: solid 1.5px rgb(246, 164, 156);
+  padding-right: 100px;
+  padding-left: 10px;
+}
+
+.margin-top {
+  margin-top: 170px;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+h3 {
+  font-size: 2em;
+  color: rgba(126, 125, 164, 1.0);
+  margin: 15px;
+  word-spacing: .3em;
+}
+
+h4 {
+  margin: 10px 0px;
+  font-size: 2em;
+}
+
+a {
+  text-decoration: none;
+}
+
+.buttonstyle {
+  margin-top: 5em;
+  background-color: transparent;
+  border-radius: 30px;
+  border: 3px solid rgba(246, 164, 156, 1.0);
+  color: rgb(173, 171, 201);
+  letter-spacing: .09em;
+  padding: 1px 40px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+
+  &:hover {
+    background-color: rgba(246, 164, 156, 1.0);
+    color: #372F45;
+    cursor: pointer;
+  }
+}
+
+input[type="reset"] {
+    font-size: .8em;
+    padding-left: .5em;
+}
+
+
+.input-form {
+  background-color: transparent;
+  border: 2px solid rgba(246, 164, 156, 1.0);
+  color: rgb(173, 171, 201);
+  letter-spacing: .09em;
+  min-width: 150px;
+  height: 45px;
+  text-align: left;
+  text-decoration: none;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+
+
+  &:hover {
+    background-color: rgba(246, 164, 156, 1.0);
+    color: #372F45;
+    cursor: pointer;
+  }
+}
+
+
+.pop-up-form {
+  background-color: transparent;
+  border: 2px solid rgba(246, 164, 156, 1.0);
+  color: rgb(173, 171, 201);
+  letter-spacing: .09em;
+  padding-right: 3.5em;
+  //width: 7%;
+  text-align: left;
+  text-decoration: none;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+
+  &:hover {
+    background-color: rgba(246, 164, 156, 1.0);
+    color: #372F45;
+    cursor: pointer;
+  }
+}
+
+/* Overlays CSS*/
+
+//google map positioning (third form)
+#map {
+  left: 40px;
+  top: -60px;
+  width: 500px;
+  height: 200px;
+
+}
+// third containers top text positioning (third form)
+.top-text2 {
+  top: -150px;
+}
+// enter location form for google maps location (third form)
+.filter-location {
+  position: absolute;
+  border: 1px solid #A8435D;
+  top: 180px;
+  left: 140px;
+}
+// input for the date time location (third form)
+.date {
+  position: absolute;
+  border: 1px solid #A8435D;
+  top: 210px;
+  left: 140px;
+}
+
+// form text
+h5 {
+  display: flex;
+  position: absolute;
+  left: 40px;
+  font-weight: 300;
+  color: #372F45;
+  font-size: 1.2em;
+}
+
+.time-text {
+  top: 180px;
+}
+.location-text {
+  top: 150px;
+}
+
+.top-text {
+  top: -95px;
+}
+.second-form {
+  top: 90px;
+}
+.second-form-first-container {
+  top: 50px;
+}
+.or-text {
+  left: 200px;
+  top: -50px;
+}
+
+// Challenge everyone button Hover version
+.everybody {
+  position: absolute;
+  left: 250px;
+  top: -25px;
+  padding: 0px 15px;
+  background-color: transparent;
+  border: 2px solid  #A8435D;
+  color: #372F45;
+  letter-spacing: .09em;
+  text-align: left;
+  text-decoration: none;
+  border-radius: 10px;
+  outline: none;
+  //padding: 5px, 0px;
+  // -webkit-transition-duration: 0.4s; /* Safari */
+  // transition-duration: 0.4s;
+  cursor: pointer;
+}
+.everybodyClicked {
+  position: absolute;
+  left: 250px;
+  top: -25px;
+  padding: 0px 15px;
+  background-color: #A8435D;
+  border: 2px solid  #A8435D;
+  color: #FFF;
+  letter-spacing: .09em;
+  text-align: left;
+  text-decoration: none;
+  border-radius: 10px;
+  outline: none;
+  //padding: 5px, 0px;
+  cursor: pointer;
+}
+
+h6 {
+  margin: 10px 0px;
+}
+
+// Submit the data button
+.submit {
+  display: flex;
+  position: absolute;
+  top: 225px;
+  right: 45px;
+  padding: 0px 15px;
+  background-color: #7E7DA4;
+  color: #f1f1f1;
+  font-size: 1.2em;
+  letter-spacing: .09em;
+  text-align: left;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 5px, 0px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+
+  &:hover {
+    // background-color: #7E7DA4;
+    // color: #F6A49C;
+    box-shadow: 1.5px 1.5px grey;
+    cursor: pointer;
+  }
+}
+
+//textbox styling
+.form-submit {
+  display: flex;
+  position: absolute;
+  top: -20px;
+  left: 40px;
+  background: transparent;
+  outline: none;
+  border: none;
+  resize: none;
+  border-bottom: 3px solid  #A8435D;
+  text-align: left;
+  width: 20%;
+  height: 30px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+//textbox for the second overlay increase the width
+.form-submit2 {
+  width: 50%;
+}
+
+.form-description {
+  top: 160px;
+  width: 50%;
+  height: 100px;
+  border: 2px solid #a8435D;
+}
+
+// overlay container
+.overlay {
+  display: flex;
+  height: 500px;
+  width: 700px;
+  position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+  display: none;
+  z-index: 1;
+  background-color: rgba(219,219,230, 1);
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: rgb(126, 125, 164);
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  display: flex;
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
+}
+
+/* This is the container for the radio button selections and styling for it*/
+.container {
+  display: flex;
+  position: relative;
+  top: 130px;
+  left: 40px;
+  width: 20%;
+  padding-left: 35px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 300;
+  color: #372F45;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #A8435D;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}

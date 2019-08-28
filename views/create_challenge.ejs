@@ -6,16 +6,352 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
   <title>Create Challenge</title>
-
+  <!--font-->
+  <link href="https://fonts.googleapis.com/css?family=Oxygen:300,400,700&display=swap" rel="stylesheet">
+  <!--Stylesheets-->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="../styles/background/background.css">
   <link rel="stylesheet" href="../styles/nav_bar/navbar.css">
-
+  <link rel="stylesheet" href="../styles/create_challenges.css">
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="../scripts/app.js"></script>
 
 </head>
-<body>
+<body class="background-image">
+    <% include partials/navbar %>
 
+  <div class="flex-center margin-top">
+    <h3>I challenge <input type="reset" id="first-box" class="input-form" onclick="openNav()" value = '...'></input> to </h3>
+  </div>
+  <div class="flex-center">
+    <h3><input type="reset" id="second-box" class="input-form" onclick="openNav2()" value = '...'></input> at
+      <input type="reset" id="third-box" class="input-form" onclick="openNav3()" value = '...'></input></h3>
+  </div>
+
+  <div class="flex-center">
+  <a href="/api/challenges"><button class="buttonstyle"><h4>Create Challenge</h4></button></a>
+  </div>
+
+    <!-- The First overlay -->
+    <div id="myNav" class="overlay">
+    <!-- Button to close the overlay navigation -->
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <!-- Overlay content -->
+      <div class="overlay-content">
+        <h5 class="top-text">What is the maximum number of challengers you can have?</h5>
+          <textarea id="challenge-number" class="form-submit" name="text" placeholder="max occupancy"></textarea>
+          <h5 class="or-text">OR</h5>
+          <button id ="challenge-everyone" class="everybody"><h6>No limit</h6></button>
+        <h5 class="second-form-first-container">What kind of challenge is it?</h5>
+
+        <!--Checkbox containers-->
+        <form>
+        <label class="container">Physical
+            <input type="radio" checked="checked" name="radio" value="physical">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container">Mental
+            <input type="radio" name="radio" value="mental">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container">Game
+            <input type="radio" name="radio" value="game">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container">Random
+            <input type="radio" name="radio" value="random">
+            <span class="checkmark"></span>
+          </label>
+        </form>
+          <!-- Submit button needs to send data to body-->
+          <button id="first-submit" class="submit" onclick="closeNav()" type="submit"><h6>Submit</h6></button>
+      </div>
+    </div>
+
+    <!-- The second overlay -->
+    <div id="myNav2" class="overlay">
+        <!-- Button to close the overlay navigation -->
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
+        <!-- Overlay content -->
+          <div class="overlay-content">
+            <h5 class="top-text">Name your challenge!</h5>
+              <textarea id="challenge-name" class="form-submit form-submit2" name="text" placeholder="A short name eg: Dino Run"></textarea>
+            <h5 class="second-form">Describe your challenge!</h5>
+              <textarea id="challenge-description" class="form-submit form-description" name="text" placeholder="What should the Challengers expect?"></textarea>
+              <!-- Submit button needs to send data to body-->
+              <button id="first-submit" class="submit" onclick="closeNav2()" type="submit"><h6>Submit</h6></button>
+          </div>
+        </div>
+
+    <!-- The Third overlay -->
+    <div id="myNav3" class="overlay">
+        <!-- Button to close the overlay navigation -->
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav3()">&times;</a>
+        <!-- Overlay content -->
+          <div class="overlay-content">
+              <h5 class="top-text2">Where will the challenge take place?</h5>
+              <!--Google map rendering-->
+              <div id="map"></div>
+              <div id="infowindow-content">
+                  <img src="" width="16" height="16" id="place-icon">
+                  <span id="place-name"  class="title"></span><br>
+                  <span id="place-address"></span>
+                </div>
+                <h5 class="location-text">Location:</h5>
+                <h5 class="time-text">Time:</h5>
+              <input id="pac-input" class="filter-location" type="text" placeholder="Enter a location">
+              <input id="date-data" type="date" class="date">
+              <!-- Submit button needs to send data to body-->
+              <button id="third-submit" class="submit" onclick="closeNav3()" type="submit"><h6>Submit</h6></button>
+          </div>
+        </div>
+
+  <!-- Use any element to open/show the overlay navigation menu -->
+  <script>
+    // this is where the data for the forms is going to be stored
+    let data = {};
+    console.log('this is the data', data);
+    let map;
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 49.2827, lng: -123.1207},
+          zoom: 14,
+          styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {
+              featureType: 'administrative.locality',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'geometry',
+              stylers: [{color: '#263c3f'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#6b9a76'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{color: '#38414e'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#212a37'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#9ca5b3'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [{color: '#746855'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#1f2835'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#f3d19c'}]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'geometry',
+              stylers: [{color: '#2f3948'}]
+            },
+            {
+              featureType: 'transit.station',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry',
+              stylers: [{color: '#17263c'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#515c6d'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.stroke',
+              stylers: [{color: '#17263c'}]
+            }
+          ]
+        });
+        const input = document.getElementById('pac-input');
+        const autocomplete = new google.maps.places.Autocomplete(input);
+
+        // Bind the map's bounds (viewport) property to the autocomplete object,
+        // so that the autocomplete requests use the current map bounds for the
+        // bounds option in the request.
+        autocomplete.bindTo('bounds', map);
+
+        // Set the data fields to return when the user selects a place.
+        autocomplete.setFields(
+            ['address_components', 'geometry', 'icon', 'name']);
+
+        var infowindow = new google.maps.InfoWindow();
+        var infowindowContent = document.getElementById('infowindow-content');
+        infowindow.setContent(infowindowContent);
+        var marker = new google.maps.Marker({
+          map: map,
+          anchorPoint: new google.maps.Point(0, -29)
+        });
+
+        // sends the coordinates to our data object
+        document.getElementById("third-submit").addEventListener('click', () => {
+          let place = autocomplete.getPlace();
+          data.location = {name: place.name, lat: place.geometry.location.lat(), lng: place.geometry.location.lng()}
+          console.log('this is my data', data);
+          document.getElementById("third-box").value = place.name;
+        });
+
+        autocomplete.addListener('place_changed', function() {
+          infowindow.close();
+          marker.setVisible(false);
+          var place = autocomplete.getPlace();
+          if (!place.geometry) {
+            // User entered the name of a Place that was not suggested and
+            // pressed the Enter key, or the Place Details request failed.
+            window.alert("No details available for input: '" + place.name + "'");
+            return;
+          }
+
+          // If the place has a geometry, then present it on a map.
+          if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);  // Why 17? Because it looks good.
+          }
+          marker.setPosition(place.geometry.location);
+          marker.setVisible(true);
+
+          var address = '';
+          if (place.address_components) {
+            address = [
+              (place.address_components[0] && place.address_components[0].short_name || ''),
+              (place.address_components[1] && place.address_components[1].short_name || ''),
+              (place.address_components[2] && place.address_components[2].short_name || '')
+            ].join(' ');
+          }
+
+          infowindowContent.children['place-icon'].src = place.icon;
+          infowindowContent.children['place-name'].textContent = place.name;
+          infowindowContent.children['place-address'].textContent = address;
+          infowindow.open(map, marker);
+        });
+
+      };
+
+      // update the data if the everyone button is clicked to be infinit (-1)
+      document.getElementById("challenge-everyone").addEventListener('click', () => {
+        data.numberOfChallengers = -1;
+        document.getElementById("first-box").value = 'Everyone';
+      });
+
+      // update the data object to be equal to a number that is typed in the input
+      document.getElementById("challenge-number").addEventListener('keyup', (e) => {
+        numOfPpl = e.target.value;
+        data.numberOfChallengers = numOfPpl;
+        document.getElementById("first-box").value = numOfPpl + " people";
+      });
+
+      // select the radio and update our data object with the selected one
+      $('input[name=radio]:radio').on('change', (e) => {
+          data.genre = e.target.value;
+      });
+
+      // Challenge name is added to the data object and populated in the value of the input
+      document.getElementById("challenge-name").addEventListener('keyup', (e) => {
+        nameOfChallenge = e.target.value;
+        data.challengeName = nameOfChallenge;
+        document.getElementById("second-box").value = nameOfChallenge;
+      });
+
+      // Challenge description is added to the data object with the key description
+      document.getElementById("challenge-description").addEventListener('keyup', (e) => {
+        description = e.target.value;
+        data.description = description;
+      });
+
+      //Adds the date data from our input to our data object
+      document.getElementById("date-data").addEventListener('change', (e) => {
+        let input = e.target.value
+        let dateEntered = new Date(input);
+        data.time = dateEntered;
+        console.log("this is our data", data);
+      });
+
+    /* Open Form*/
+      function openNav() {
+        console.log('im open');
+        document.getElementById("myNav").style.display = "block";
+      }
+
+      function openNav2() {
+        console.log('im open');
+        document.getElementById("myNav2").style.display = "block";
+      }
+
+      function openNav3() {
+        console.log('im open');
+        document.getElementById("myNav3").style.display = "block";
+      }
+
+      /* Close Form*/
+      function closeNav() {
+        console.log('im closed');
+        document.getElementById("myNav").style.display = "none";
+      }
+
+      function closeNav2() {
+        console.log('im closed');
+        document.getElementById("myNav2").style.display = "none";
+      }
+
+      function closeNav3() {
+        console.log('im closed');
+        document.getElementById("myNav3").style.display = "none";
+      }
+
+      /* Button Toggle color*/
+      function colorchange(id) {
+        const background = document.getElementById("challenge-everyone").style.backgroundColor;
+        if (background === "transparent") {
+          document.getElementById(id).style.background = "rgb(168, 67, 93)";
+          document.getElementById(id).style.color = "rgb(255, 255, 255)";
+        } else {
+          document.getElementById(id).style.background = "transparent";
+          document.getElementById(id).style.color = "#372F45";
+        }
+      }
+  </script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= API_KEY %>&libraries=places&callback=initMap"
+async defer></script>
 </body>
 </html>
