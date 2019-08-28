@@ -48,12 +48,11 @@ app.use("/api/ranks", ranksRoutes(db));
 app.use("/api/landing", homepageRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
-
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("landing");
 });
 
 app.listen(PORT, () => {
