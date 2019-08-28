@@ -4,9 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <link rel="stylesheet" ref="../styles/ranks.css">
+  <title>Defy | Ranks</title>
 </head>
 <body>
-
+  <table id="ranks">
+    <tr>
+      <th>Rank</th>
+      <th>Name</th>
+      <th>Physical</th>
+      <th>Mental</th>
+      <th>Game</th>
+      <th>Random</th>
+      <th>Total</th>
+    </tr>
+    <% for (let user of users) {%>
+      <tr>
+        <td><%= user.rank %></td>
+        <td><%= user.name %></td>
+        <td><%= user.physical %></td>
+        <td><%= user.mental %></td>
+        <td><%= user.game %></td>
+        <td><%= user.random %></td>
+        <td><%= user.total %></td>
+      </tr>
+    <% } %>
+  </table>
 </body>
 </html>

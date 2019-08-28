@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link href="https://fonts.googleapis.com/css?family=Oxygen:300,400,700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="../styles/nav_bar/navbar.css">
-  <link rel="stylesheet" href="../styles/my_challenges.css">
-  <link rel="stylesheet" href="../styles/background/background.css">
-  <title></title>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <link rel='stylesheet' href='/styles/nav_bar/navbar.css'>
+  <link rel='stylesheet' href='/styles/my_challenges.css'>
+  <script
+			  src='https://code.jquery.com/jquery-3.4.1.js'
+			  integrity='sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU='
+			  crossorigin='anonymous'></script>
+  <title>Defy | Challenges</title>
 </head>
 <body class='background-image'>
   <div id='modal' class='hide'>
@@ -52,6 +54,7 @@
 
     let map;
     let bounds;
+    let arr;
 
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -139,38 +142,21 @@
           ]
         });
 
-
         bounds = new google.maps.LatLngBounds();
-
-        const arr = {
-          // 'downtown': [49.2820, -123.1171],
-          'coquitlam': {
-            lat: 49.2838,
-            lng: -122.7932,
-            name: 'Marathon',
-            address: '999 Ave',
-            date: '27 Aug',
-            description: 'Run really fast',
-            genre: 'Physical'
-          },
-          'kitsilano': {
-            lat: 49.2684,
-            lng: -123.1683,
-            name: 'Eating Contest',
-            address: '999 Ave',
-            date: '27 Aug',
-            description: 'Eat really fast',
-            genre: 'Food'
-          }
-        };
 
         let card = document.getElementById('pac-card');
 
         map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
+      $.get("/api/challenges/list", (res) => {
+
+        arr = res.data.rows;
+
         for (var key in arr) {
 
           let data = arr[key];
+
+          console.log(data.long);
 
           let content = `
             <div>Event: ${data.name}</div>
@@ -182,7 +168,7 @@
           });
 
           let marker = new google.maps.Marker({
-            position: new google.maps.LatLng (data.lat, data.lng),
+            position: new google.maps.LatLng (data.lat, data.long),
             map: map,
             title: key
           });
@@ -201,7 +187,7 @@
             modalContent.append(newDiv);
 
             let headerDiv = $('<div>');
-            headerDiv.append($('<label>').text(`${data.name} - ${data.genre}`));
+            headerDiv.append($('<label>').text(`${data.name.charAt(0).toUpperCase() + data.name.substring(1, data.name.length)} - ${data.genre}`));
             headerDiv.append(exit);
             headerDiv.addClass('header');
 
@@ -212,7 +198,7 @@
             dLDiv.addClass('dl');
             let dateDiv = $('<div>');
             dateDiv.append($('<label>').text('Date'));
-            dateDiv.append($('<p>').text(`${data.date}`));
+            dateDiv.append($('<p>').text(`${data.time}`));
             dateDiv.addClass('date');
             let locationDiv = $('<div>');
             locationDiv.append($('<label>').text('Location'));
@@ -252,6 +238,7 @@
           bounds.extend(marker.position);
         }
         map.fitBounds(bounds); //-> use this one to show more than one point
+      });
 
         function setupClickListener(id, types) {
           var radioButton = document.getElementById(id);
@@ -329,6 +316,7 @@
       $('input[name=filter]:radio').on('change', (e) => {
         $('#pac-input').val(e.target.value);
         console.log(e.target.value); //input the value to the db
+        arr = {};
       });
 
       exit.click(() => {
