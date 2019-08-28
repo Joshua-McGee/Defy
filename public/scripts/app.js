@@ -11,17 +11,47 @@ $(() => {
   });;
 });
 
-// updates the html of the textarea placeholder
-document.getElementById("first-submit").onclick = updateTextarea1;
-console.log("This is the button being clicked", document.getElementById("first-submit").onclick);
 
-function updateTextarea1 () {
-  const numOfPpl = document.getElementById('challenge-number').innerText;
-  document.getElementById("challenge-number").placeholder = numOfPpl;
-};
+  $('#challenge-everyone').on('click',function() {
+      if($(this).hasClass('everybody'))
+         $(this).removeClass('everybody').addClass('everybodyClicked');
+         else
+    $(this).removeClass('everybodyClicked').addClass('everybody');
+  });
 
-// $('input[name=radio]:radio').on('change', function() {
-//   $('#target').val( $(this).val() );
+// // this is where the data for the forms is going to be stored
+// let data = {};
+// console.log('this is the data', data);
+
+// // update the data if the everyone button is clicked to be infinit (-1)
+// document.getElementById("challenge-everyone").addEventListener('click', () => {
+//   data.numberOfChallengers = -1;
+//   document.getElementById("first-box").value = 'Everyone';
+// });
+
+// // update the data object to be equal to a number that is typed in the input
+// document.getElementById("challenge-number").addEventListener('keyup', (e) => {
+//   numOfPpl = e.target.value;
+//   data.numberOfChallengers = numOfPpl;
+//   document.getElementById("first-box").value = numOfPpl + " people";
+// });
+
+// // select the radio and update our data object with the selected one
+// $('input[name=radio]:radio').on('change', (e) => {
+//     data.genre = e.target.value;
+// });
+
+// // Challenge name is added to the data object and populated in the value of the input
+// document.getElementById("challenge-name").addEventListener('keyup', (e) => {
+//   nameOfChallenge = e.target.value;
+//   data.challengeName = nameOfChallenge;
+//   document.getElementById("second-box").value = nameOfChallenge;
+// });
+
+// // Challenge description is added to the data object with the key description
+// document.getElementById("challenge-description").addEventListener('keyup', (e) => {
+//   description = e.target.value;
+//   data.description = description;
 // });
 
 });

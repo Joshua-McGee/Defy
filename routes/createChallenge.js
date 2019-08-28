@@ -3,11 +3,15 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
-    res.render('create_challenge');
+    let templateVars = {
+      API_KEY: process.env.API
+    }
+    res.render('create_challenge', templateVars);
   });
 
   router.get('/create', (req, res) => {
-    res.render('create_challenges');
+
+   // res.render('create_challenges');
   })
 
   router.get('/:id', (req, res) => {

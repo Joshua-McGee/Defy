@@ -49,12 +49,40 @@ a {
   }
 }
 
+input[type="reset"] {
+    font-size: .8em;
+    padding-left: .5em;
+}
+
+
+.input-form {
+  background-color: transparent;
+  border: 2px solid rgba(246, 164, 156, 1.0);
+  color: rgb(173, 171, 201);
+  letter-spacing: .09em;
+  min-width: 150px;
+  height: 45px;
+  text-align: left;
+  text-decoration: none;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+
+
+  &:hover {
+    background-color: rgba(246, 164, 156, 1.0);
+    color: #372F45;
+    cursor: pointer;
+  }
+}
+
+
 .pop-up-form {
   background-color: transparent;
   border: 2px solid rgba(246, 164, 156, 1.0);
   color: rgb(173, 171, 201);
   letter-spacing: .09em;
   padding-right: 3.5em;
+  //width: 7%;
   text-align: left;
   text-decoration: none;
   -webkit-transition-duration: 0.4s; /* Safari */
@@ -67,7 +95,34 @@ a {
   }
 }
 
-/* Overlay CSS*/
+/* Overlays CSS*/
+
+//google map positioning (third form)
+#map {
+  left: 40px;
+  top: -60px;
+  width: 500px;
+  height: 200px;
+
+}
+// third containers top text positioning (third form)
+.top-text2 {
+  top: -150px;
+}
+// enter location form for google maps location (third form)
+.filter-location {
+  position: absolute;
+  border: 1px solid #A8435D;
+  top: 180px;
+  left: 140px;
+}
+// input for the date time location (third form)
+.date {
+  position: absolute;
+  border: 1px solid #A8435D;
+  top: 210px;
+  left: 140px;
+}
 
 // form text
 h5 {
@@ -78,10 +133,21 @@ h5 {
   color: #372F45;
   font-size: 1.2em;
 }
+
+.time-text {
+  top: 180px;
+}
+.location-text {
+  top: 150px;
+}
+
 .top-text {
   top: -95px;
 }
 .second-form {
+  top: 90px;
+}
+.second-form-first-container {
   top: 50px;
 }
 .or-text {
@@ -89,7 +155,7 @@ h5 {
   top: -50px;
 }
 
-// Challenge everyone button
+// Challenge everyone button Hover version
 .everybody {
   position: absolute;
   left: 250px;
@@ -102,15 +168,27 @@ h5 {
   text-align: left;
   text-decoration: none;
   border-radius: 10px;
-  padding: 5px, 0px;
-  -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;
-
-  &:hover {
-    background-color: #A8435D;
-    color: #FFF;
-    cursor: pointer;
-  }
+  outline: none;
+  //padding: 5px, 0px;
+  // -webkit-transition-duration: 0.4s; /* Safari */
+  // transition-duration: 0.4s;
+  cursor: pointer;
+}
+.everybodyClicked {
+  position: absolute;
+  left: 250px;
+  top: -25px;
+  padding: 0px 15px;
+  background-color: #A8435D;
+  border: 2px solid  #A8435D;
+  color: #FFF;
+  letter-spacing: .09em;
+  text-align: left;
+  text-decoration: none;
+  border-radius: 10px;
+  outline: none;
+  //padding: 5px, 0px;
+  cursor: pointer;
 }
 
 h6 {
@@ -143,7 +221,7 @@ h6 {
   }
 }
 
-//textbox
+//textbox styling
 .form-submit {
   display: flex;
   position: absolute;
@@ -158,6 +236,18 @@ h6 {
   width: 20%;
   height: 30px;
   font-family: 'Source Sans Pro', sans-serif;
+}
+
+//textbox for the second overlay increase the width
+.form-submit2 {
+  width: 50%;
+}
+
+.form-description {
+  top: 160px;
+  width: 50%;
+  height: 100px;
+  border: 2px solid #a8435D;
 }
 
 // overlay container
@@ -212,7 +302,7 @@ h6 {
   }
 }
 
-/* This is the container for the button selections and styling for it*/
+/* This is the container for the radio button selections and styling for it*/
 .container {
   display: flex;
   position: relative;
@@ -269,13 +359,3 @@ h6 {
 .container input:checked ~ .checkmark:after {
   display: block;
 }
-
-// /* Style the indicator (dot/circle) */
-// .container .checkmark:after {
-//  	top: 9px;
-// 	left: 9px;
-// 	width: 8px;
-// 	height: 8px;
-// 	border-radius: 50%;
-// 	background: white;
-// }
