@@ -13,19 +13,33 @@
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/nav_bar/navbar.css" type="text/css" />
   <link rel="stylesheet" href="/styles/background/background.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/ranks.css" type="text/css" />
+
 </head>
 <body class="background-image">
   <% include partials/navbar %>
-  <table id="ranks">
-    <tr>
-      <th>Rank</th>
-      <th>Name</th>
-      <th>Physical</th>
-      <th>Mental</th>
-      <th>Game</th>
-      <th>Random</th>
-      <th>Total</th>
-    </tr>
-  </table>
+  <div class="center-table">
+    <table id="ranks" class="rwd-table">
+      <tr>
+        <th>Rank</th>
+        <th>Name</th>
+        <th>Physical</th>
+        <th>Mental</th>
+        <th>Game</th>
+        <th>Random</th>
+        <th>Total</th>
+      </tr>
+      <!--will be auto populated using a for loop through our users data-->
+      <tr>
+        <td title="Rank">1</td>
+        <td title="Name">Nima</td>
+        <td title="Physical">0</td>
+        <td title="Mental">1</td>
+        <td title="Game">9001</td>
+        <td title="Random">3</td>
+        <td title="Total">9005</td>
+      </tr>
+    </table>
+  </div>
 </body>
 </html>
