@@ -10,7 +10,10 @@ module.exports = (db) => {
   });
 
   router.get('/create', (req, res) => {
-    res.render('create_challenges');
+    let templateVars = {
+      API_KEY: process.env.API_KEY
+    }
+    res.render('create_challenge', templateVars);
   });
 
   router.get('/:id', (req, res) => {
@@ -63,6 +66,7 @@ module.exports = (db) => {
 
   //gate
   router.post('/', (req, res) => {
+    console.log(req.body, "hi");
     const { maxOccupancy, genre, challengeName, description, time, location, userId } = req.body.data;
 
     const queryString = `
@@ -95,7 +99,7 @@ module.exports = (db) => {
 
       db.query(queryChallenges, [userId, locationId, genre, challengeName, description, time, maxOccupancy])
       .then(challenges => {
-        res.json({ successful: true });
+        res.redirect('/');
       });
     })
     .catch(err => {
