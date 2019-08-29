@@ -82,7 +82,6 @@ input[type="reset"] {
   color: rgb(173, 171, 201);
   letter-spacing: .09em;
   padding-right: 3.5em;
-  //width: 7%;
   text-align: left;
   text-decoration: none;
   -webkit-transition-duration: 0.4s; /* Safari */
@@ -107,6 +106,9 @@ input[type="reset"] {
 }
 // third containers top text positioning (third form)
 .top-text2 {
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: #f1f1f1;
   top: -150px;
 }
 // enter location form for google maps location (third form)
@@ -142,7 +144,7 @@ h5 {
 }
 
 .top-text {
-  top: -95px;
+  top: -75px;
 }
 .second-form {
   top: 90px;
@@ -152,14 +154,14 @@ h5 {
 }
 .or-text {
   left: 200px;
-  top: -50px;
+  top: -30px;
 }
 
 // Challenge everyone button Hover version
 .everybody {
   position: absolute;
   left: 250px;
-  top: -25px;
+  top: -5px;
   padding: 0px 15px;
   background-color: transparent;
   border: 2px solid  #A8435D;
@@ -169,15 +171,12 @@ h5 {
   text-decoration: none;
   border-radius: 10px;
   outline: none;
-  //padding: 5px, 0px;
-  // -webkit-transition-duration: 0.4s; /* Safari */
-  // transition-duration: 0.4s;
   cursor: pointer;
 }
 .everybodyClicked {
   position: absolute;
   left: 250px;
-  top: -25px;
+  top: -5px;
   padding: 0px 15px;
   background-color: #A8435D;
   border: 2px solid  #A8435D;
@@ -214,8 +213,6 @@ h6 {
   transition-duration: 0.4s;
 
   &:hover {
-    // background-color: #7E7DA4;
-    // color: #F6A49C;
     box-shadow: 1.5px 1.5px grey;
     cursor: pointer;
   }
@@ -225,7 +222,6 @@ h6 {
 .form-submit {
   display: flex;
   position: absolute;
-  top: -20px;
   left: 40px;
   background: transparent;
   outline: none;
@@ -250,6 +246,36 @@ h6 {
   border: 2px solid #a8435D;
 }
 
+.top-color {
+  position: absolute;
+  height: 15%;
+  width: 100%;
+  background-color: #2841CE;;
+  &.blue {
+    background-color: #2841CE;
+    position: absolute;
+    height: 15%;
+    width: 100%;
+  }
+  &.green {
+    background-color: #137E2C;
+    position: absolute;
+    height: 15%;
+    width: 100%;
+  }
+  &.red {
+    background-color: #A8435D;
+    position: absolute;
+    height: 15%;
+    width: 100%;
+  }
+  &.orange {
+    background-color: #AC6615;
+    position: absolute;
+    height: 15%;
+    width: 100%;
+  }
+}
 // overlay container
 .overlay {
   display: flex;
@@ -276,19 +302,19 @@ h6 {
   padding: 8px;
   text-decoration: none;
   font-size: 36px;
-  color: rgb(126, 125, 164);
+  color: #f1f1f1;
   display: block;
   transition: 0.3s;
 }
 
 .overlay a:hover, .overlay a:focus {
-  color: #f1f1f1;
+  color: lightgray;
 }
 
 .overlay .closebtn {
   display: flex;
   position: absolute;
-  top: 20px;
+  top: -15px;
   right: 45px;
   font-size: 60px;
 }

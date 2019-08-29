@@ -37,6 +37,7 @@
 
     <!-- The First overlay -->
     <div id="myNav" class="overlay">
+      <div id="topBox" class='top-color'></div>
     <!-- Button to close the overlay navigation -->
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <!-- Overlay content -->
@@ -73,6 +74,7 @@
 
     <!-- The second overlay -->
     <div id="myNav2" class="overlay">
+        <div id="topBox" class='top-color'></div>
         <!-- Button to close the overlay navigation -->
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav2()">&times;</a>
         <!-- Overlay content -->
@@ -88,6 +90,7 @@
 
     <!-- The Third overlay -->
     <div id="myNav3" class="overlay">
+        <div id="topBox" class='top-color'></div>
         <!-- Button to close the overlay navigation -->
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav3()">&times;</a>
         <!-- Overlay content -->
@@ -286,6 +289,20 @@
 
       // select the radio and update our data object with the selected one
       $('input[name=radio]:radio').on('change', (e) => {
+        switch(e.target.value) {
+          case 'physical':
+            $(".top-color").removeClass('green').removeClass('red').removeClass('orange').addClass('blue');
+            break;
+          case 'mental':
+            $('.top-color').removeClass('blue').removeClass('red').removeClass('orange').addClass('green');
+            break;
+          case 'game':
+            $('.top-color').removeClass('blue').removeClass('green').removeClass('orange').addClass('red');
+            break;
+          case 'random':
+            $('.top-color').removeClass('blue').removeClass('green').removeClass('red').addClass('orange');
+          break;
+      };
           data.genre = e.target.value;
           console.log('this is the data radio', data);
       });
