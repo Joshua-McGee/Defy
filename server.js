@@ -45,7 +45,6 @@ const widgetsRoutes = require("./routes/widgets");
 const challengesRoutes = require('./routes/challenges');
 const ranksRoutes = require('./routes/ranks');
 const homepageRoutes = require('./routes/homepage');
-const createChallengeRoutes = require('./routes/createChallenge');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -54,7 +53,6 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.use("/api/challenges", challengesRoutes(db));
 app.use("/api/ranks", ranksRoutes(db));
 app.use("/api/landing", homepageRoutes(db));
-app.use("/api/create", createChallengeRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page

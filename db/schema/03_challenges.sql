@@ -6,6 +6,6 @@ CREATE TABLE challenges (
   genre VARCHAR(255) NOT NULL,
   name VARCHAR(255) NOT NULL,
   description TEXT NOT NULL,
-  time TIMESTAMP NOT NULL DEFAULT NOW(),
+  date DATE NOT NULL DEFAULT NOW(),
   max_occupancy INTEGER NOT NULL DEFAULT 2
 );

@@ -290,7 +290,7 @@
       });
 
       $('#create-challenge-btn').click(() => {
-        $.post('/api/challenges/create', {data});
+        $.post('/api/challenges/', {data});
       });
 
       // Challenge name is added to the data object and populated in the value of the input
@@ -308,9 +308,9 @@
 
       //Adds the date data from our input to our data object
       document.getElementById("date-data").addEventListener('change', (e) => {
-        let input = e.target.value
+        let input = e.target.value;
         let dateEntered = new Date(input);
-        data.time = dateEntered;
+        data.time = formattedTime;
         console.log("this is our data", data);
       });
 

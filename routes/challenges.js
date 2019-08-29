@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const moment = require('moment');
 
 module.exports = (db) => {
   router.get('/', (req, res) => {
@@ -66,8 +67,9 @@ module.exports = (db) => {
 
   //gate
   router.post('/', (req, res) => {
-    console.log(req.body, "hi");
-    const { maxOccupancy, genre, challengeName, description, time, location, userId } = req.body.data;
+    let { maxOccupancy, genre, challengeName, description, time, location, userId } = req.body.data;
+
+    time = moment(time).format();
 
     const queryString = `
       SELECT id
@@ -77,7 +79,8 @@ module.exports = (db) => {
 
     db.query(queryString, [location.name, location.lat, location.lng, location.address])
     .then(data => {
-      if(data.rows){
+      console.log("querying");
+      if(data.rows.length > 0){
         return Promise.resolve(data.rows[0].id);
       }
       const queryLocation = `
@@ -85,22 +88,21 @@ module.exports = (db) => {
         VALUES ($1, $2, $3, $4)
         RETURNING *;
       `;
-
+      console.log(location);
       return db.query(queryLocation, [location.name, location.lat, location.lng, location.address])
       .then(location => {
         return Promise.resolve(location.id);
-      });
+      })
+      .catch(err=>console.log(err));
     })
     .then(locationId => {
-      const queryChallenges =  `
-        INSERT INTO challenges (user_id, location_id, genre, name, description, time, max_occupancy)
-        VALUES ($1, $2, $3, $4, $5, $6);
+      console.log("location");
+      const queryChallenges = `
+        INSERT INTO challenges (user_id, location_id, genre, name, description, date, max_occupancy)
+        VALUES ($1, $2, $3, $4, $5, $6, $7);
       `;
 
-      db.query(queryChallenges, [userId, locationId, genre, challengeName, description, time, maxOccupancy])
-      .then(challenges => {
-        res.redirect('/');
-      });
+      db.query(queryChallenges, [userId, locationId, genre, challengeName, description, time, maxOccupancy]);
     })
     .catch(err => {
       res.json({successful: false});
