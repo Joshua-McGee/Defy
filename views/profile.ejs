@@ -17,20 +17,20 @@
   <link rel="stylesheet" href="/styles/profile.css" type="text/css" />
 
 </head>
-<body class='background-image'>
+<body class="background-image-blur">
     <% include partials/navbar %>
     <% console.log(data) %>
   <div class='user-info-wrapper'>
   <div class="user-info">
     <img src="https://avatars1.githubusercontent.com/u/6765188?s=400&v=4" class="img-nima" alt="profile-pic.png">
     <div class="name">
-      <label>Name: <%= data.user.username %></label>
+      <label><h6 class="label-padding">Name :</h6> <%= data.user.username %></label>
     </div>
     <div class="email">
-      <label>Email: <%= data.user.email %></label>
+      <label><h6 class="label-padding">Email :</h6> <%= data.user.email %></label>
     </div>
     <div>
-      <label class="rank">Current Rank: <%= data.user.rank %></label>
+      <label class="rank"><h6 class="label-padding">Current Rank :</h6> <%= data.user.rank %></label>
     </div>
   </div>
   <div id="challengeinfo" class="challenges-info">
@@ -59,6 +59,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 </body>
 </html>
