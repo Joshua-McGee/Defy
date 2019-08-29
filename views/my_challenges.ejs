@@ -27,8 +27,8 @@
       </div>
       <div id='pac-card'>
           <div id="type-selector" class="pac-controls">
-            <input type ="radio" name="type" id="all" checked="checked">
-            <label for = "all">All</label>
+            <input type ="radio" name="type" id="everything" checked="checked">
+            <label for = "everything">Everything</label>
 
             <input type="radio" name="type" id="physical">
             <label for="physical">Physical</label>
@@ -56,7 +56,7 @@
     let bounds;
     let arr;
 
-    function initMap() {
+    function initMap(genre) {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -33.8688, lng: 151.2195},
           zoom: 13,
@@ -144,19 +144,17 @@
 
         bounds = new google.maps.LatLngBounds();
 
-        let card = document.getElementById('pac-card');
+        // let card = $('#pac-card');
 
-        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+        // map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
-      $.get("/api/challenges/list", (res) => {
+      $.get(`/api/challenges/genres/${genre ? genre : 'Everything'}`, (res) => {
 
         arr = res.data.rows;
 
         for (var key in arr) {
 
           let data = arr[key];
-
-          console.log(data.long);
 
           let content = `
             <div>Event: ${data.name}</div>
@@ -241,17 +239,17 @@
       });
 
         function setupClickListener(id, types) {
-          var radioButton = document.getElementById(id);
-          radioButton.addEventListener('click', function() {
-            console.log(types); //update the info with db info
+          var radioButton = $(`#${id}`);
+          radioButton.click(() => {
+            initMap(types[0]);
           });
         }
 
-        setupClickListener('all', ['all']);
-        setupClickListener('physical', ['physical']);
-        setupClickListener('mental', ['mental']);
-        setupClickListener('game', ['game']);
-        setupClickListener('random', ['random']);
+        setupClickListener('everything', ['Everything']);
+        setupClickListener('physical', ['Physical']);
+        setupClickListener('mental', ['Mental']);
+        setupClickListener('game', ['Game']);
+        setupClickListener('random', ['Random']);
 
     }
 
@@ -274,10 +272,10 @@
       let selectionDiv = $('<div>');
       selectionDiv.addClass('selection');
 
-      let allInput = $(`
+      let everythingInput = $(`
       <div>
-        <input type="radio" name="filter" value="All">
-        <label>All</label>
+        <input type="radio" name="filter" value="Everything">
+        <label>Everything</label>
       </div>`);
 
       let physicalInput = $(`
@@ -304,7 +302,7 @@
         <label>Random</label>
       </div>`);
 
-      selectionDiv.append(allInput);
+      selectionDiv.append(everythingInput);
       selectionDiv.append(physicalInput);
       selectionDiv.append(mentalInput);
       selectionDiv.append(gameInput);
@@ -315,8 +313,7 @@
 
       $('input[name=filter]:radio').on('change', (e) => {
         $('#pac-input').val(e.target.value);
-        console.log(e.target.value); //input the value to the db
-        arr = {};
+        initMap(e.target.value);
       });
 
       exit.click(() => {
