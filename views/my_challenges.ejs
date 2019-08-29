@@ -185,9 +185,26 @@
             modalContent.append(newDiv);
 
             let headerDiv = $('<div>');
-            headerDiv.append($('<label>').text(`${data.name.charAt(0).toUpperCase() + data.name.substring(1, data.name.length)} - ${data.genre}`));
+            headerDiv.append($('<label>').text(`${data.genre} Challenge`).addClass('header-padding'));
             headerDiv.append(exit);
             headerDiv.addClass('header');
+            switch(data.genre) {
+              case 'Physical':
+                headerDiv.addClass('blue');
+              break;
+
+              case 'Mental':
+                headerDiv.addClass('green') ;
+              break;
+
+              case 'Game':
+                headerDiv.addClass('red');
+              break;
+
+              case 'Random':
+                headerDiv.addClass('orange');
+              break;
+            };
 
             let infoDiv = $('<div>');
             infoDiv.addClass('info');
@@ -219,6 +236,23 @@
             let acceptBtn = $('<button>');
             acceptBtn.addClass('accept');
             acceptBtn.text('Accept');
+            switch(data.genre) {
+              case 'Physical':
+                acceptBtn.addClass('blue');
+              break;
+
+              case 'Mental':
+                acceptBtn.addClass('green') ;
+              break;
+
+              case 'Game':
+                acceptBtn.addClass('red');
+              break;
+
+              case 'Random':
+                acceptBtn.addClass('orange');
+              break;
+            };
 
             newDiv.append(headerDiv);
             newDiv.append(infoDiv);
