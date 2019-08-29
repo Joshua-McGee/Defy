@@ -174,61 +174,94 @@
           infowindow.open(map.marker);
         });
 
-        marker.addListener('click', function() {
-          let modal = $('#modal');
-          let modalContent = $('#modal-content');
-          let newDiv = $('<div>');
-          let exit = $('<button>');
-          exit.addClass('exit');
-          exit.html('&times;');
-          modalContent.append(newDiv);
+          marker.addListener('click', function() {
+            let modal = $('#modal');
+            let modalContent = $('#modal-content');
+            let newDiv = $('<div>');
+            let exit = $('<button>');
+            exit.addClass('exit');
+            exit.html('&times;');
+            modalContent.append(newDiv);
 
-          let headerDiv = $('<div>');
-          headerDiv.append($('<label>').text(`${data.name.charAt(0).toUpperCase() + data.name.substring(1, data.name.length)} - ${data.genre}`));
-          headerDiv.append(exit);
-          headerDiv.addClass('header');
+            let headerDiv = $('<div>');
+            headerDiv.append($('<label>').text(`${data.genre} Challenge`).addClass('header-padding'));
+            headerDiv.append(exit);
+            headerDiv.addClass('header');
+            switch(data.genre) {
+              case 'Physical':
+                headerDiv.addClass('blue');
+              break;
 
-          let infoDiv = $('<div>');
-          infoDiv.addClass('info');
+              case 'Mental':
+                headerDiv.addClass('green') ;
+              break;
 
-          let dLDiv = $('<div>');
-          dLDiv.addClass('dl');
-          let dateDiv = $('<div>');
-          dateDiv.append($('<label>').text('Date'));
-          dateDiv.append($('<p>').text(`${data.date}`));
-          dateDiv.addClass('date');
-          let locationDiv = $('<div>');
-          locationDiv.append($('<label>').text('Location'));
-          locationDiv.append($('<p>').text(`${data.address}`));
-          locationDiv.addClass('location');
+              case 'Game':
+                headerDiv.addClass('red');
+              break;
 
-          //appends date and location into date and location div
-          dLDiv.append(dateDiv);
-          dLDiv.append(locationDiv);
+              case 'Random':
+                headerDiv.addClass('orange');
+              break;
+            };
 
-          let descriptionDiv = $('<div>');
-          descriptionDiv.append($('<label>').text('Description'));
-          descriptionDiv.addClass('description');
-          descriptionDiv.append($('<p>').text(data.description));
+            let infoDiv = $('<div>');
+            infoDiv.addClass('info');
 
-          //adds date location and description into a div
-          infoDiv.append(dLDiv);
-          infoDiv.append(descriptionDiv);
+            let dLDiv = $('<div>');
+            dLDiv.addClass('dl');
+            let dateDiv = $('<div>');
+            dateDiv.append($('<label>').text('Date'));
+            dateDiv.append($('<p>').text(`${data.date}`));
+            dateDiv.addClass('date');
+            let locationDiv = $('<div>');
+            locationDiv.append($('<label>').text('Location'));
+            locationDiv.append($('<p>').text(`${data.address}`));
+            locationDiv.addClass('location');
 
-          let acceptBtn = $('<button>');
-          acceptBtn.addClass('accept');
-          acceptBtn.text('Accept');
+            //appends date and location into date and location div
+            dLDiv.append(dateDiv);
+            dLDiv.append(locationDiv);
 
-          newDiv.append(headerDiv);
-          newDiv.append(infoDiv);
-          newDiv.append(acceptBtn);
+            let descriptionDiv = $('<div>');
+            descriptionDiv.append($('<label>').text('Description'));
+            descriptionDiv.addClass('description');
+            descriptionDiv.append($('<p>').text(data.description));
 
-          exit.click(() => {
-            modal.removeClass('show');
-            modal.addClass('hide');
-            newDiv.remove();
-          });
+            //adds date location and description into a div
+            infoDiv.append(dLDiv);
+            infoDiv.append(descriptionDiv);
 
+            let acceptBtn = $('<button>');
+            acceptBtn.addClass('accept');
+            acceptBtn.text('Accept');
+            switch(data.genre) {
+              case 'Physical':
+                acceptBtn.addClass('blue');
+              break;
+
+              case 'Mental':
+                acceptBtn.addClass('green') ;
+              break;
+
+              case 'Game':
+                acceptBtn.addClass('red');
+              break;
+
+              case 'Random':
+                acceptBtn.addClass('orange');
+              break;
+            };
+
+            newDiv.append(headerDiv);
+            newDiv.append(infoDiv);
+            newDiv.append(acceptBtn);
+
+            exit.click(() => {
+              modal.removeClass('show');
+              modal.addClass('hide');
+              newDiv.remove();
+            });
           modal.removeClass('hide');
           modal.addClass('show');
         });

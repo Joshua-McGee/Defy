@@ -43,19 +43,39 @@ body{
           padding: 0 20px;
           color: white;
           background-color: black;
+          &.blue {
+            background-color: #2841CE;
+          }
+          &.green {
+            background-color: #137E2C;
+          }
+          &.red {
+            background-color: #A8435D;
+          }
+          &.orange {
+            background-color: #AC6615;
+          }
+
+          .header-padding {
+            padding-left: 40px;
+            padding-top: 10px;
+          }
 
           .exit {
             background: none;
             border: none;
             outline: none;
-            padding: 8px;
+            padding-right: 8px;
+            padding-bottom: 8px;
             text-decoration: none;
             font-size: 60px;
-            color: rgb(126, 125, 164);
+            color: #f1f1f1;
+            //color: rgb(126, 125, 164);
             transition: 0.3s;
 
             &:hover {
-              color: #f1f1f1;
+              color: lightgrey;
+              cursor: pointer;
             }
           }
         }
@@ -78,10 +98,13 @@ body{
           .dl {
             display: flex;
             justify-content: space-around;
+            margin-right: 68px;
             width: 100%;
           }
 
           .description {
+            margin-top: -120px;
+            margin-right: 18px;
             width: 80%;
           }
         }
@@ -95,6 +118,21 @@ body{
           align-self: center;
           font-size: 28px;
           padding: 5px;
+          &:hover {
+            cursor: pointer;
+          }
+          &.blue {
+            background-color: #2841CE;
+          }
+          &.green {
+            background-color: #137E2C;
+          }
+          &.red {
+            background-color: #A8435D;
+          }
+          &.orange {
+            background-color: #AC6615;
+          }
         }
       }
     }
@@ -169,7 +207,7 @@ body{
 
       input {
         height: 43px;
-        width: 225px;
+        width: 200px;
         background-color: inherit;
         outline: none;
         border: none;
@@ -177,6 +215,9 @@ body{
         color: orange;
         font-size: 40px;
         text-align: center;
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }
