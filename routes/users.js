@@ -23,7 +23,25 @@ module.exports = (db) => {
   });
 
   router.post('/login', (req, res) => {
-
+    const { email } = req.body;
+    let queryString = `
+      SELECT *
+      FROM users
+      WHERE email = $1;
+    `
+    db.query(queryString, [email])
+    .then(users => {
+      if (!users.rows) {
+        res.send({ error: "error" });
+        return;
+      }
+      let user = users.rows[0];
+      req.session.userId = user.id;
+      res.json({user: {name: user.name, email: user.email, id: user.id }})
+    })
+    .catch(err => {
+      return res.json({err});
+    })
   });
 
   router.put('/:id/challenges/:challenge_id', (req, res) => {
