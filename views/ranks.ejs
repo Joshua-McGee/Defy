@@ -29,16 +29,23 @@
         <th>Random</th>
         <th>Total</th>
       </tr>
+      <% let count = 0; %>
       <!--will be auto populated using a for loop through our users data-->
+      <% for(let user in data) { %>
+
+      <% count ++; %>
+      <!--for all entrys in data users.name-->
+      <!--user[user].name etc etc goes in the td tags-->
       <tr>
-        <td title="Rank">1</td>
-        <td title="Name">Nima</td>
-        <td title="Physical">0</td>
-        <td title="Mental">1</td>
-        <td title="Game">9001</td>
-        <td title="Random">3</td>
-        <td title="Total">9005</td>
+        <td title="Rank"><%= count %></td>
+        <td title="Name"><%= data[user].name %></td>
+        <td title="Physical"><%= data[user].physical %></td>
+        <td title="Mental"><%= data[user].mental %></td>
+        <td title="Game"><%= data[user].game %></td>
+        <td title="Random"><%= data[user].random %></td>
+        <td title="Total"><%= data[user].total %></td>
       </tr>
+      <% } %>
     </table>
   </div>
 </body>
