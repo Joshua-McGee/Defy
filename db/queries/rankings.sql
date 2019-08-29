@@ -24,4 +24,5 @@ users.challenges_completed as Total,
 ) as Random
 FROM users
 GROUP BY users.id, users.name, users.challenges_completed
+ORDER BY users.challenges_completed
 LIMIT 10;
