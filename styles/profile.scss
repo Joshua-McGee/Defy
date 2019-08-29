@@ -1,6 +1,11 @@
+$purple: #ADABC9;
+$red: #A8435D;
+$font-color: #372F45;
+$button-fill: #F6A49C;
+$button-unclicked: #ADABC9;
+
 #challengeinfo {
-  width: 500px;
-  overflow: auto;
+  width: 775px;
 }
 
 .user-info-wrapper {
@@ -10,14 +15,14 @@
   margin-top: 100px;
   margin-left: 5%;
   >div {
-    //border: 1px solid red;
     height: 500px;
     width: 300px;
   }
 }
-.challenge {
-  height: 150px;
-  border: 1px solid red;
+
+.challenges-list {
+  overflow: auto;
+  height: 500px;
 }
 .email {
   position: absolute;
@@ -35,10 +40,17 @@
   display: flex;
   height: 50px;
   width: 100%;
-}
-.challenges-tab {
-  border: 1px solid red;
-  padding-right: 30px;
+
+  .challenges-tab {
+    padding-right: 30px;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: $button-unclicked;
+    font-weight: bold;
+  }
 }
 
 .img-nima {
@@ -53,6 +65,87 @@
   padding-right: 25px;
 }
 
+.challenge {
+  display: flex;
+  justify-content: space-between;
+  background-color: $purple;
+  margin-bottom: 20px;
+  height: 150px;
+
+  .label {
+    width: 10px;
+    height: 100%;
+  }
+
+  .data-wrapper {
+
+    width: 100%;
+    box-sizing: border-box;
+    margin: 10px;
+
+    .meta-data {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 40%;
+
+      >span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        color: $font-color;
+      }
+
+      .challenge-name {
+        font-weight: bold;
+        font-size: 30px;
+      }
+    }
+
+    .description {
+      display: flex;
+      align-items: center;
+      height: 60%;
+      color: $font-color;
+    }
+  }
+      .delete-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 150px;
+        margin-right: 20px;
+        height: 100%;
+
+        .delete {
+          background-color: $red;
+          color: white;
+          border: none;
+          outline: none;
+          border-radius: 500px;
+          width: 90%;
+          padding: 10px;
+        }
+      }
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.green {
+  background-color: green;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
 label {
   color: #7E7DA4;
   font-size: 1.5em;
@@ -64,6 +157,10 @@ div {
 
 .hide {
   display: none;
+}
+
+.active {
+  color: $button-fill !important;
 }
 
 /* width */

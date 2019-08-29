@@ -37,10 +37,6 @@ module.exports = (db) => {
     res.render('profile', templateVar);
   });
 
-  router.get('/:id/challenges', (req, res) => {
-
-  });
-
   router.get('/:id',async (req, res) => {
 
     let id = req.params.id;
@@ -62,8 +58,9 @@ module.exports = (db) => {
 
     let createdChallengesQuery = `
     SELECT
+    challenges.id,
     challenges.description,
-    challenges.date,
+    TO_CHAR(challenges.date::DATE,'dd/mm/yyyy') as date,
     challenges.name,
     challenges.genre
     FROM challenges
@@ -73,9 +70,10 @@ module.exports = (db) => {
 
     let acceptedChallengesQuery = `
     SELECT
+    challenges.id,
     user_challenges.completed,
     challenges.description,
-    challenges.date,
+    TO_CHAR(challenges.date::DATE,'dd/mm/yyyy') as date,
     challenges.name,
     challenges.genre
     FROM challenges
@@ -119,16 +117,21 @@ module.exports = (db) => {
     })
   });
 
-  router.put('/:id/challenges/:challenge_id', (req, res) => {
+  router.delete('/', (req, res) => {
+    let {id, challenge_id} = req.body;
 
-  });
+    console.log(id, challenge_id);
 
-  router.put('/:id', (req, res) => {
+    let deleteChallenges = `
+      DELETE FROM user_challenges
+      WHERE challenge_id = $1 AND user_id = $2;
+    `
 
-  });
-
-  router.delete('/:id/challenges/:challenge_id', (req, res) => {
-
+    db.query(deleteChallenges, [challenge_id, id])
+    .then(() => {
+      return res.json({successful: true});
+    })
+    .catch(err => console.log(err));
   });
 
   return router;

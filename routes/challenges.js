@@ -110,13 +110,21 @@ module.exports = (db) => {
   });
 
   //gate
-  router.put('/', (req, res) => {
-
-  });
-
-  //gate
   router.delete('/', (req, res) => {
+    //add function to remove only if id is same
+    let {id, challenge_id} = req.body;
+    console.log(id, challenge_id, "hi");
 
+    let deleteChallenges = `
+      DELETE FROM challenges
+      WHERE id = $1 AND user_id = $2;
+    `
+
+    db.query(deleteChallenges, [challenge_id, id])
+    .then(() => {
+      return res.json({successful: true});
+    })
+    .catch(err => console.log(err));
   });
 
   return router;
