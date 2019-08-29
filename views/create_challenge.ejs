@@ -114,6 +114,7 @@
     // this is where the data for the forms is going to be stored
     let data = {};
     console.log('this is the data', data);
+
     let map;
 
     function initMap() {
@@ -224,7 +225,10 @@
         // sends the coordinates to our data object
         document.getElementById("third-submit").addEventListener('click', () => {
           let place = autocomplete.getPlace();
-          data.location = {name: place.name, lat: place.geometry.location.lat(), lng: place.geometry.location.lng()}
+          // data should be a string
+          let shortAddress = String((place.address_components[0].short_name) + " " + (place.address_components[1].short_name));
+          //send the data to our data object and give it keys/values
+          data.location = {name: place.name, address: shortAddress, lat: place.geometry.location.lat(), lng: place.geometry.location.lng()}
           console.log('this is my data', data);
           document.getElementById("third-box").value = place.name;
         });
@@ -269,14 +273,14 @@
 
       // update the data if the everyone button is clicked to be infinit (-1)
       document.getElementById("challenge-everyone").addEventListener('click', () => {
-        data.numberOfChallengers = -1;
+        data.maxOccupancy = -1;
         document.getElementById("first-box").value = 'Everyone';
       });
 
       // update the data object to be equal to a number that is typed in the input
       document.getElementById("challenge-number").addEventListener('keyup', (e) => {
         numOfPpl = e.target.value;
-        data.numberOfChallengers = numOfPpl;
+        data.maxOccupancy = numOfPpl;
         document.getElementById("first-box").value = numOfPpl + " people";
       });
 
@@ -336,18 +340,6 @@
       function closeNav3() {
         console.log('im closed');
         document.getElementById("myNav3").style.display = "none";
-      }
-
-      /* Button Toggle color*/
-      function colorchange(id) {
-        const background = document.getElementById("challenge-everyone").style.backgroundColor;
-        if (background === "transparent") {
-          document.getElementById(id).style.background = "rgb(168, 67, 93)";
-          document.getElementById(id).style.color = "rgb(255, 255, 255)";
-        } else {
-          document.getElementById(id).style.background = "transparent";
-          document.getElementById(id).style.color = "#372F45";
-        }
       }
   </script>
 
