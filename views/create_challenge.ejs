@@ -112,7 +112,7 @@
   <!-- Use any element to open/show the overlay navigation menu -->
   <script>
     // this is where the data for the forms is going to be stored
-    let data = {};
+    let data = { genre: 'Physical' };
     console.log('this is the data', data);
 
     let map;
@@ -272,16 +272,16 @@
       };
 
       // update the data if the everyone button is clicked to be infinit (-1)
-      document.getElementById("challenge-everyone").addEventListener('click', () => {
+      $("#challenge-everyone").click(() => {
         data.maxOccupancy = -1;
-        document.getElementById("first-box").value = 'Everyone';
+        $("#first-box").val('Everyone');
       });
 
       // update the data object to be equal to a number that is typed in the input
-      document.getElementById("challenge-number").addEventListener('keyup', (e) => {
+      $("#challenge-number").keyup((e) => {
         numOfPpl = e.target.value;
         data.maxOccupancy = numOfPpl;
-        document.getElementById("first-box").value = numOfPpl + " people";
+        $("#first-box").val(numOfPpl + " people");
       });
 
       // select the radio and update our data object with the selected one
@@ -290,28 +290,29 @@
           console.log('this is the data radio', data);
       });
 
-      $('#create-challenge-btn').click(() => {
-        $.post('/api/challenges/', {data});
-        window.location.replace("localhost:8080/api/users/1");
+      $('#create-challenge-btn').click(async () => {
+        await $.post('/api/challenges/', {data});
+        window.location.replace("http://localhost:8080/api/users/2");
+      });
 
       // Challenge name is added to the data object and populated in the value of the input
-      document.getElementById("challenge-name").addEventListener('keyup', (e) => {
+      $("#challenge-name").keyup((e) => {
         nameOfChallenge = e.target.value;
         data.challengeName = nameOfChallenge;
-        document.getElementById("second-box").value = nameOfChallenge;
+        $("#second-box").val(nameOfChallenge);
       });
 
       // Challenge description is added to the data object with the key description
-      document.getElementById("challenge-description").addEventListener('keyup', (e) => {
+      $("#challenge-description").keyup((e) => {
         description = e.target.value;
         data.description = description;
       });
 
       //Adds the date data from our input to our data object
-      document.getElementById("date-data").addEventListener('change', (e) => {
+      $("#date-data").change((e) => {
         let input = e.target.value;
         let dateEntered = new Date(input);
-        data.time = formattedTime;
+        data.time = dateEntered;
         console.log("this is our data", data);
       });
 
