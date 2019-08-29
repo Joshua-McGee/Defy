@@ -19,16 +19,18 @@
 </head>
 <body class='background-image'>
     <% include partials/navbar %>
+    <% console.log(data) %>
+  <div class='user-info-wrapper'>
   <div class="user-info">
-    <img src="" alt="profile-pic.png">
+    <img src="https://avatars1.githubusercontent.com/u/6765188?s=400&v=4" class="img-nima" alt="profile-pic.png">
     <div class="name">
-      <label>Name: <%= data.name %></label>
+      <label>Name: <%= data.user.username %></label>
     </div>
     <div class="email">
-      <label>Email: <%= data.email %></label>
+      <label>Email: <%= data.user.email %></label>
     </div>
     <div>
-      <label>Current Rank: <%= data.rank %></label>
+      <label>Current Rank: <%= data.user.rank %></label>
     </div>
   </div>
   <div class="challenges-info">
@@ -37,12 +39,26 @@
       <div class="challenges-tab">Tab 2</div>
     </div>
     <div class="Challenges-list">
-      <div class="challenge">
-        <div class="label"></div>
-        <img src="">
-        <div class="description"></div>
+      <div class="created">
+        <% for(let challenge of data.created ) { %>
+        <div class="challenge">
+          <div class="label"></div>
+          <img src="">
+          <div class="description"><%= challenge.description %></div>
+        </div>
+        <% } %>
+      </div>
+      <div class="accepted">
+        <% for(let challenge of data.accepted) { %>
+          <div>
+            <div class="label"></div>
+            <img src="">
+            <div class="description"></div>
+          </div>
+        <% } %>
       </div>
     </div>
   </div>
+</div>
 </body>
 </html>

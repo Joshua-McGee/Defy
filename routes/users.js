@@ -45,28 +45,55 @@ module.exports = (db) => {
 
     let id = req.params.id;
 
-    let queryString = `
+    let userQuery = `
       SELECT
-      users.name,
+      users.name as username,
       users.email,
       users.avatar_url,
-      users.challenges_completed,
-      user_challenges.completed,
-      challenges.description,
-      challenges.date,
-      challenges.name,
-      challenges.genre
+        (SELECT COUNT(*) + 1
+         FROM users as competitors
+         WHERE competitors.challenges_completed >= users.challenges_completed AND competitors.challenges_completed <> users.challenges_completed
+         AND users.id = $1) as rank
       FROM users
-      JOIN user_challenges ON users.id = user_challenges.user_id
-      JOIN challenges ON challenges.id = user_challenges.challenge_id
       WHERE users.id = $1;
     `
-    let data = await db.query(queryString, [id]);
+
+    let user = await db.query(userQuery, [id]);
+
+    let createdChallengesQuery = `
+    SELECT
+    challenges.description,
+    challenges.date,
+    challenges.name,
+    challenges.genre
+    FROM challenges
+    WHERE user_id = $1;
+    `;
+    let created = await db.query(createdChallengesQuery, [id]);
+
+    let acceptedChallengesQuery = `
+    SELECT
+    user_challenges.completed,
+    challenges.description,
+    challenges.date,
+    challenges.name,
+    challenges.genre
+    FROM challenges
+    JOIN user_challenges ON challenges.id = challenge_id
+    WHERE user_challenges.user_id = $1
+    ORDER BY user_challenges.completed;
+    `;
+
+    let accepted = await db.query(acceptedChallengesQuery, [id]);
 
     let templateVar = {
-      data: data.rows
+      data: {
+        user: user.rows[0],
+        created: created.rows,
+        accepted: accepted.rows
+      }
     }
-
+    //console.log(templateVar);
     res.render('profile', templateVar);
   });
 

@@ -1,6 +1,31 @@
 body {
 
 }
+.user-info-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 100px;
+
+  >div {
+    border: 1px solid red;
+    height: 500px;
+    width: 300px;
+  }
+}
+.challenges-tabs {
+  display: flex;
+}
+.challenges-tab {
+  border: 1px solid red;
+  padding-right: 30px;
+}
+
+.img-nima {
+  height: 200px;
+  width: 200px;
+}
+
 
 label {
   color: #FFF;
@@ -8,4 +33,8 @@ label {
 
 div {
   color: #FFF;
+}
+
+.hide {
+  display: none;
 }
