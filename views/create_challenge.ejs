@@ -292,6 +292,7 @@
 
       $('#create-challenge-btn').click(() => {
         $.post('/api/challenges/', {data});
+        window.location.href="http://localhost:8080/api/users/2";
       });
 
       // Challenge name is added to the data object and populated in the value of the input

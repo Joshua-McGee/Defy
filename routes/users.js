@@ -10,16 +10,64 @@ const router  = express.Router();
 
 module.exports = (db) => {
 
-  router.get("/", (req, res) => {
-    res.send('profile');
+  router.get("/",async (req, res) => {
+    // make a query that combines users, challenges, user_challenges.
+    // we want it to have users.name, users.email, list of challenges to be completed + are completed, avatar url
+    let queryString = `
+      SELECT
+      users.name,
+      users.email,
+      users.avatar_url,
+      users.challenges_completed,
+      user_challenges.completed,
+      challenges.description,
+      challenges.date,
+      challenges.name,
+      challenges.genre
+      FROM users
+      JOIN user_challenges ON users.id = user_challenges.user_id
+      JOIN challenges ON challenges.id = user_challenges.challenge_id;
+    `
+    let data = await db.query(queryString);
+
+    let templateVar = {
+      data: data.rows
+    }
+
+    res.render('profile', templateVar);
   });
 
   router.get('/:id/challenges', (req, res) => {
 
   });
 
-  router.get('/:id', (req, res) => {
+  router.get('/:id',async (req, res) => {
 
+    let id = req.params.id;
+
+    let queryString = `
+      SELECT
+      users.name,
+      users.email,
+      users.avatar_url,
+      users.challenges_completed,
+      user_challenges.completed,
+      challenges.description,
+      challenges.date,
+      challenges.name,
+      challenges.genre
+      FROM users
+      JOIN user_challenges ON users.id = user_challenges.user_id
+      JOIN challenges ON challenges.id = user_challenges.challenge_id
+      WHERE users.id = $1;
+    `
+    let data = await db.query(queryString, [id]);
+
+    let templateVar = {
+      data: data.rows
+    }
+
+    res.render('profile', templateVar);
   });
 
   router.post('/login', (req, res) => {
