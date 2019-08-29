@@ -29,7 +29,11 @@ module.exports = (db) => {
         FROM users as random_users
         JOIN challenges ON random_users.id = challenges.user_id
         WHERE random_users.id = users.id AND challenges.genre = 'Random'
-      ) as Random
+      ) as Random,
+      (SELECT COUNT(*) + 1
+         FROM users as competitors
+         WHERE competitors.challenges_completed >= users.challenges_completed AND competitors.challenges_completed <> users.challenges_completed
+         ) as Rank
       FROM users
       GROUP BY users.id, users.name, users.challenges_completed
       ORDER BY users.challenges_completed DESC, users.name

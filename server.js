@@ -6,7 +6,6 @@ const PORT       = process.env.PORT || 8080;
 const ENV        = process.env.ENV || "development";
 const express    = require("express");
 const bodyParser = require("body-parser");
-const cookieSession = require('cookie-session');
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
@@ -17,11 +16,6 @@ const dbParams = require('./lib/db.js');
 const db = new Pool(dbParams);
 db.connect();
 
-// Cookie Session
-app.use(cookieSession({
-  name: 'session',
-  keys:['key1']
-}));
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -41,7 +35,6 @@ app.use(express.static("public"));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/widgets");
 const challengesRoutes = require('./routes/challenges');
 const ranksRoutes = require('./routes/ranks');
 const homepageRoutes = require('./routes/homepage');
@@ -49,7 +42,6 @@ const homepageRoutes = require('./routes/homepage');
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
 app.use("/api/challenges", challengesRoutes(db));
 app.use("/api/ranks", ranksRoutes(db));
 app.use("/api/landing", homepageRoutes(db));

@@ -6,20 +6,31 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="/styles/profile.css">
   <title>Defy | Profile</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Oxygen:300,400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/nav_bar/navbar.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/background/background.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/ranks.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/profile.css" type="text/css" />
+
 </head>
-<body>
+<body class='background-image'>
+    <% include partials/navbar %>
+    <% console.log(data) %>
+  <div class='user-info-wrapper'>
   <div class="user-info">
-    <img src="" alt="profile-pic.png">
+    <img src="https://avatars1.githubusercontent.com/u/6765188?s=400&v=4" class="img-nima" alt="profile-pic.png">
     <div class="name">
-      <button>Edit</button>
-      <label>Name: <%= name %></label>
+      <label>Name: <%= data.user.username %></label>
     </div>
     <div class="email">
-      <button>Edit</button>
-      <label>Email: <%= email %></label>
+      <label>Email: <%= data.user.email %></label>
     </div>
     <div>
-      <label>Current Rank: <%= rank %></label>
+      <label>Current Rank: <%= data.user.rank %></label>
     </div>
   </div>
   <div class="challenges-info">
@@ -28,12 +39,26 @@
       <div class="challenges-tab">Tab 2</div>
     </div>
     <div class="Challenges-list">
-      <div class="challenge">
-        <div class="label"></div>
-        <img src="">
-        <div class="description"></div>
+      <div class="created">
+        <% for(let challenge of data.created ) { %>
+        <div class="challenge">
+          <div class="label"></div>
+          <img src="">
+          <div class="description"><%= challenge.description %></div>
+        </div>
+        <% } %>
+      </div>
+      <div class="accepted">
+        <% for(let challenge of data.accepted) { %>
+          <div>
+            <div class="label"></div>
+            <img src="">
+            <div class="description"></div>
+          </div>
+        <% } %>
       </div>
     </div>
   </div>
+</div>
 </body>
 </html>
