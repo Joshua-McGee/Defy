@@ -12,12 +12,12 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-  <link rel="stylesheet" href="../styles/background/background.css">
-  <link rel="stylesheet" href="../styles/nav_bar/navbar.css">
-  <link rel="stylesheet" href="../styles/create_challenges.css">
+  <link rel="stylesheet" href="/styles/background/background.css">
+  <link rel="stylesheet" href="/styles/nav_bar/navbar.css">
+  <link rel="stylesheet" href="/styles/create_challenges.css">
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="../scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
 
 </head>
 <body class="background-image">
@@ -32,7 +32,7 @@
   </div>
 
   <div class="flex-center">
-  <a href="/api/challenges"><button class="buttonstyle"><h4>Create Challenge</h4></button></a>
+  <button class="buttonstyle" id="create-challenge-btn"><h4>Create Challenge</h4></button>
   </div>
 
     <!-- The First overlay -->
@@ -283,6 +283,10 @@
       // select the radio and update our data object with the selected one
       $('input[name=radio]:radio').on('change', (e) => {
           data.genre = e.target.value;
+      });
+
+      $('#create-challenge-btn').click(() => {
+        $.post('/api/challenges/create', {data});
       });
 
       // Challenge name is added to the data object and populated in the value of the input
