@@ -15,7 +15,10 @@
   <link rel="stylesheet" href="/styles/background/background.css" type="text/css" />
   <link rel="stylesheet" href="/styles/ranks.css" type="text/css" />
   <link rel="stylesheet" href="/styles/profile.css" type="text/css" />
-
+  <script
+			  src='https://code.jquery.com/jquery-3.4.1.js'
+			  integrity='sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU='
+			  crossorigin='anonymous'></script>
 </head>
 <body class='background-image'>
     <% include partials/navbar %>
@@ -35,30 +38,64 @@
   </div>
   <div id="challengeinfo" class="challenges-info">
     <div class="challenges-tabs">
-      <div class="challenges-tab">My Challenges</div>
-      <div class="challenges-tab">Accepted Challenges</div>
+      <button id="my-challenges" class="challenges-tab active">My Challenges</button>
+      <button id="accepted-challenges" class="challenges-tab">Accepted Challenges</button>
     </div>
-    <div class="Challenges-list">
+    <div class="challenges-list">
       <div class="created">
         <% for(let challenge of data.created ) { %>
-        <div class="challenge">
-          <div class="label"></div>
+          <!-- couldn't use ternary operator -->
+        <div class="challenge"><div class="label <%= challenge.genre === 'Physical' ? 'red' : ''%> <%= challenge.genre === 'Mental' ? 'green' : ''%> <%= challenge.genre === 'Game' ? 'blue' : ''%> <%= challenge.genre === 'Random' ? 'yellow' : ''%>"></div>
           <img src="">
-          <div class="description"><%= challenge.description %></div>
+          <div class="data-wrapper">
+            <div class="meta-data">
+              <span class="challenge-name"><%= challenge.name %></span>
+              <span><%= challenge.date %></span>
+            </div>
+            <div class="description"><%= challenge.description %></div>
+          </div>
+          <div class="delete-wrapper">
+            <button class="delete">Delete</button>
+          </div>
         </div>
         <% } %>
       </div>
-      <div class="accepted">
+      <div class="accepted hide">
         <% for(let challenge of data.accepted) { %>
-          <div>
-            <div class="label"></div>
-            <img src="">
-            <div class="description"></div>
-          </div>
-        <% } %>
+          <div class="challenge">
+              <% console.log(challenge); %>
+              <div class="label <%= challenge.genre === 'Physical' ? 'red' : ''%> <%= challenge.genre === 'Mental' ? 'green' : ''%> <%= challenge.genre === 'Game' ? 'blue' : ''%> <%= challenge.genre === 'Random' ? 'yellow' : ''%>"></div>
+              <img src="">
+              <div class="data-wrapper">
+                <div class="meta-data">
+                  <span class="challenge-name"><%= challenge.name %></span>
+                  <span><%= challenge.date %></span>
+                </div>
+                <div class="description"><%= challenge.description %></div>
+              </div>
+              <div class="delete-wrapper">
+                <button class="delete">Delete</button>
+              </div>
+            </div>
+          <% } %>
       </div>
     </div>
   </div>
 </div>
+<script>
+  $('#my-challenges').click(() => {
+    $('.created').removeClass('hide');
+    $('#accepted-challenges').removeClass('active');
+    $('.accepted').addClass('hide');
+    $('#my-challenges').addClass('active');
+  });
+
+  $('#accepted-challenges').click(() => {
+    $('.accepted').removeClass('hide');
+    $('#my-challenges').removeClass('active');
+    $('.created').addClass('hide');
+    $('#accepted-challenges').addClass('active');
+  })
+</script>
 </body>
 </html>

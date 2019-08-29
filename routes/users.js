@@ -37,10 +37,6 @@ module.exports = (db) => {
     res.render('profile', templateVar);
   });
 
-  router.get('/:id/challenges', (req, res) => {
-
-  });
-
   router.get('/:id',async (req, res) => {
 
     let id = req.params.id;
@@ -63,7 +59,7 @@ module.exports = (db) => {
     let createdChallengesQuery = `
     SELECT
     challenges.description,
-    challenges.date,
+    TO_CHAR(challenges.date::DATE,'dd/mm/yyyy') as date,
     challenges.name,
     challenges.genre
     FROM challenges
@@ -75,7 +71,7 @@ module.exports = (db) => {
     SELECT
     user_challenges.completed,
     challenges.description,
-    challenges.date,
+    TO_CHAR(challenges.date::DATE,'dd/mm/yyyy') as date,
     challenges.name,
     challenges.genre
     FROM challenges
