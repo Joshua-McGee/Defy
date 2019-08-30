@@ -17,14 +17,10 @@ module.exports = (db) => {
     res.render('create_challenge', templateVars);
   });
 
-  router.get('/:id', (req, res) => {
-
-  });
-
   router.get('/genres/:genre', (req, res) => {
 
     let queryString = `
-    SELECT  challenges.id,
+    SELECT challenges.id,
     user_id,
     location_id,
     genre,
@@ -38,7 +34,7 @@ module.exports = (db) => {
     zoom,
     address
     FROM challenges
-    JOIN locations ON locations.id = location_id
+    JOIN locations ON locations.id = location_id;
     `;
 
     switch(req.params.genre) {
@@ -73,16 +69,9 @@ module.exports = (db) => {
     .catch(err => console.log(err));
   });
 
-  router.get('/locations', (req, res) => {
-
-  });
-
   //gate
-  router.post('/', async (req, res) => {
+  router.post('/', (req, res) => {
     let { maxOccupancy, genre, challengeName, description, time, location, userId } = req.body.data;
-
-    console.log('genre', genre);
-    console.log('challenge Name', challengeName);
     time = moment(time).format();
 
     const queryString = `
@@ -101,15 +90,14 @@ module.exports = (db) => {
         VALUES ($1, $2, $3, $4)
         RETURNING *;
       `;
+
       return db.query(queryLocation, [location.name, location.lat, location.lng, location.address])
       .then(location => {
-        console.log("inside location", location.rows[0].id);
         return Promise.resolve(location.rows[0].id);
       })
       .catch(err=>console.log(err));
     })
     .then(locationId => {
-      console.log("location");
       const queryChallenges = `
         INSERT INTO challenges (user_id, location_id, genre, name, description, date, max_occupancy)
         VALUES ($1, $2, $3, $4, $5, $6, $7);
@@ -134,12 +122,14 @@ module.exports = (db) => {
       DELETE FROM challenges
       WHERE id = $1 AND user_id = $2;
     `
-
     db.query(deleteChallenges, [challenge_id, id])
     .then(() => {
       return res.json({successful: true});
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      console.log(err);
+      res.json({successful: false});
+    });
   });
 
   return router;

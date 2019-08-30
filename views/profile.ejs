@@ -24,7 +24,14 @@
     <% include partials/navbar %>
   <div class='user-info-wrapper'>
   <div class="user-info">
-    <img src="https://avatars1.githubusercontent.com/u/6765188?s=400&v=4" class="img-nima" alt="profile-pic.png">
+    <img src="" class="img-nima" alt="profile-pic.png">
+    <script>
+      if(window.location.href.split('/')[5] == 3){
+        $('.img-nima').attr('src', 'https://avatars1.githubusercontent.com/u/6765188?s=400&v=4');
+      } else{
+        $('.img-nima').attr('src', '/images/avatar.png');
+      }
+    </script>
     <div class="name">
       <label><h6 class="label-padding">Name :</h6> <%= data.user.username %></label>
     </div>
@@ -81,49 +88,6 @@
     </div>
   </div>
 </div>
-<script>
-  $('#my-challenges').click(() => {
-    $('.created').removeClass('hide');
-    $('#accepted-challenges').removeClass('active');
-    $('.accepted').addClass('hide');
-    $('#my-challenges').addClass('active');
-  });
-
-  $('#accepted-challenges').click(() => {
-    $('.accepted').removeClass('hide');
-    $('#my-challenges').removeClass('active');
-    $('.created').addClass('hide');
-    $('#accepted-challenges').addClass('active');
-  });
-
-
-  $('.delete').click(function(){
-    if($(this).attr('accepted')){
-      $.ajax({
-        url: '/api/users/',
-        data: {
-          challenge_id: $(this).attr('challenge_id'),
-          id: localStorage.getItem('user_id')
-        },
-        type: 'DELETE',
-        success: (result) => {
-          location.reload();
-        }
-      });
-    } else {
-      $.ajax({
-        url: '/api/challenges/',
-        data: {
-          challenge_id: $(this).attr('challenge_id'),
-          id: localStorage.getItem('user_id')
-        },
-        type: 'DELETE',
-        success: (result) => {
-          location.reload();
-        }
-      });
-    }
-  })
-</script>
+<script src="/scripts/profile.js"></script>
 </body>
 </html>
