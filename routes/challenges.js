@@ -30,7 +30,7 @@ module.exports = (db) => {
     genre,
     challenges.name as challenge_name,
     description,
-    date,
+    TO_CHAR(date::DATE,'dd/mm/yyyy') as date,
     max_occupancy,
     locations.name as location_name,
     lat,
