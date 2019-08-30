@@ -261,7 +261,9 @@
                   challenge_id: data.id
                 })
                 .then((result) => {
-                  console.log(result);
+                  modal.removeClass('show');
+                  modal.addClass('hide');
+                  newDiv.remove();
                 });
 
               });
