@@ -143,10 +143,6 @@
 
       bounds = new google.maps.LatLngBounds();
 
-      // let card = $('#pac-card');
-
-      // map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
-
     $.get(`/api/challenges/genres/${genre ? genre : 'Everything'}`, (res) => {
 
       arr = res.data.rows;
@@ -234,7 +230,7 @@
             infoDiv.append(descriptionDiv);
 
             let acceptBtn = $('<button>');
-            if(localStorage.getItem('user_id') != data.user_id){
+            if(localStorage.getItem('user_id') && localStorage.getItem('user_id') != data.user_id){
               acceptBtn.addClass('accept');
               acceptBtn.text('Accept');
               switch(data.genre) {
