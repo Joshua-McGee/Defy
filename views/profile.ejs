@@ -63,20 +63,20 @@
       <div class="accepted hide">
         <% for(let challenge of data.accepted) { %>
           <div class="challenge">
-              <div class="label <%= challenge.genre === 'Physical' ? 'red' : ''%> <%= challenge.genre === 'Mental' ? 'green' : ''%> <%= challenge.genre === 'Game' ? 'blue' : ''%> <%= challenge.genre === 'Random' ? 'yellow' : ''%>"></div>
-              <img src="">
-              <div class="data-wrapper">
-                <div class="meta-data">
-                  <span class="challenge-name"><%= challenge.name %></span>
-                  <span><%= challenge.date %></span>
-                </div>
-                <div class="description"><%= challenge.description %></div>
+            <div class="label <%= challenge.genre === 'Physical' ? 'red' : ''%> <%= challenge.genre === 'Mental' ? 'green' : ''%> <%= challenge.genre === 'Game' ? 'blue' : ''%> <%= challenge.genre === 'Random' ? 'yellow' : ''%>"></div>
+            <img src="">
+            <div class="data-wrapper">
+              <div class="meta-data">
+                <span class="challenge-name"><%= challenge.name %></span>
+                <span><%= challenge.date %></span>
               </div>
-              <div class="delete-wrapper">
-                <button class="delete" challenge_id="<%= challenge.id %>" accepted="true">Delete</button>
-              </div>
+              <div class="description"><%= challenge.description %></div>
             </div>
-          <% } %>
+            <div class="delete-wrapper">
+              <button class="delete" challenge_id="<%= challenge.id %>" accepted="true">Delete</button>
+            </div>
+          </div>
+        <% } %>
       </div>
     </div>
   </div>
@@ -103,7 +103,7 @@
         url: '/api/users/',
         data: {
           challenge_id: $(this).attr('challenge_id'),
-          id: 3
+          id: localStorage.getItem('user_id')
         },
         type: 'DELETE',
         success: (result) => {
@@ -115,7 +115,7 @@
         url: '/api/challenges/',
         data: {
           challenge_id: $(this).attr('challenge_id'),
-          id: 3
+          id: localStorage.getItem('user_id')
         },
         type: 'DELETE',
         success: (result) => {

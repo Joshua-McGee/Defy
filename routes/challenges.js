@@ -78,9 +78,11 @@ module.exports = (db) => {
   });
 
   //gate
-  router.post('/', (req, res) => {
+  router.post('/', async (req, res) => {
     let { maxOccupancy, genre, challengeName, description, time, location, userId } = req.body.data;
 
+    console.log('genre', genre);
+    console.log('challenge Name', challengeName);
     time = moment(time).format();
 
     const queryString = `
@@ -91,7 +93,6 @@ module.exports = (db) => {
 
     db.query(queryString, [location.name, location.lat, location.lng, location.address])
     .then(data => {
-      console.log("querying");
       if(data.rows.length > 0){
         return Promise.resolve(data.rows[0].id);
       }
@@ -100,10 +101,10 @@ module.exports = (db) => {
         VALUES ($1, $2, $3, $4)
         RETURNING *;
       `;
-      console.log(location);
       return db.query(queryLocation, [location.name, location.lat, location.lng, location.address])
       .then(location => {
-        return Promise.resolve(location.id);
+        console.log("inside location", location.rows[0].id);
+        return Promise.resolve(location.rows[0].id);
       })
       .catch(err=>console.log(err));
     })
@@ -114,7 +115,10 @@ module.exports = (db) => {
         VALUES ($1, $2, $3, $4, $5, $6, $7);
       `;
 
-      db.query(queryChallenges, [userId, locationId, genre, challengeName, description, time, maxOccupancy]);
+      db.query(queryChallenges, [userId, locationId, genre, challengeName, description, time, maxOccupancy])
+      .then(() => {
+        res.json({successful: true});
+      })
     })
     .catch(err => {
       res.json({successful: false});
@@ -125,7 +129,6 @@ module.exports = (db) => {
   router.delete('/', (req, res) => {
     //add function to remove only if id is same
     let {id, challenge_id} = req.body;
-    console.log(id, challenge_id, "hi");
 
     let deleteChallenges = `
       DELETE FROM challenges

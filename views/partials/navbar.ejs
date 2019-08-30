@@ -6,7 +6,20 @@
     <a href="/api/ranks">Rankings</a>
   </div>
   <div class="rightbox">
-      <a href="/api/users/2">Hello Gary</a>
-      <a id="logout" href="/">Logout</a>
+      <button id="login-gary" class="login-button" onClick="localStorage.setItem('user_id', 2);">Login Gary</button>
+      <button id="login-josh" class="login-button" onClick="localStorage.setItem('user_id', 1);">Login Joshua</button>
+      <a id="nav-user" href="/api/users/"></a>
+      <button id="logout" class="login-button" onClick="localStorage.removeItem('user_id');">Logout</button>
+      <script>
+        $('#nav-user').text(localStorage.getItem('user_id') == 1 ? 'Joshua' : 'Gary');
+        $('#nav-user').attr('href', `/api/users/${localStorage.getItem('user_id')}`);
+
+        $('.login-button').click(() => {
+          let user_id = localStorage.getItem('user_id');
+          $('#nav-user').attr('href', `http://localhost:8080/api/users/${localStorage.getItem('user_id')}`);
+          $('#nav-user').text(user_id == 1 ? 'Joshua' : (user_id == 2 ? 'Gary': ''));
+          window.location.replace(`http://localhost:8080/api/users/${localStorage.getItem('user_id')}`);
+        });
+      </script>
   </div>
 </nav>

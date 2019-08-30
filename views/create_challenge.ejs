@@ -51,19 +51,19 @@
         <!--Checkbox containers-->
         <form>
         <label class="container">Physical
-            <input type="radio" checked="checked" name="radio" value="physical">
+            <input type="radio" checked="checked" name="radio" value="Physical">
             <span class="checkmark"></span>
           </label>
           <label class="container">Mental
-            <input type="radio" name="radio" value="mental">
+            <input type="radio" name="radio" value="Mental">
             <span class="checkmark"></span>
           </label>
           <label class="container">Game
-            <input type="radio" name="radio" value="game">
+            <input type="radio" name="radio" value="Game">
             <span class="checkmark"></span>
           </label>
           <label class="container">Random
-            <input type="radio" name="radio" value="random">
+            <input type="radio" name="radio" value="Random">
             <span class="checkmark"></span>
           </label>
         </form>
@@ -115,7 +115,7 @@
   <!-- Use any element to open/show the overlay navigation menu -->
   <script>
     // this is where the data for the forms is going to be stored
-    let data = { genre: 'Physical' };
+    const data = { genre: 'Physical', userId: localStorage.getItem('user_id') };
     console.log('this is the data', data);
 
     let map;
@@ -217,10 +217,10 @@
         autocomplete.setFields(
             ['address_components', 'geometry', 'icon', 'name']);
 
-        var infowindow = new google.maps.InfoWindow();
-        var infowindowContent = document.getElementById('infowindow-content');
+        const infowindow = new google.maps.InfoWindow();
+        const infowindowContent = document.getElementById('infowindow-content');
         infowindow.setContent(infowindowContent);
-        var marker = new google.maps.Marker({
+        const marker = new google.maps.Marker({
           map: map,
           anchorPoint: new google.maps.Point(0, -29)
         });
@@ -290,16 +290,16 @@
       // select the radio and update our data object with the selected one
       $('input[name=radio]:radio').on('change', (e) => {
         switch(e.target.value) {
-          case 'physical':
+          case 'Physical':
             $(".top-color").removeClass('green').removeClass('red').removeClass('orange').addClass('blue');
             break;
-          case 'mental':
+          case 'Mental':
             $('.top-color').removeClass('blue').removeClass('red').removeClass('orange').addClass('green');
             break;
-          case 'game':
+          case 'Game':
             $('.top-color').removeClass('blue').removeClass('green').removeClass('orange').addClass('red');
             break;
-          case 'random':
+          case 'Random':
             $('.top-color').removeClass('blue').removeClass('green').removeClass('red').addClass('orange');
           break;
       };
@@ -307,9 +307,11 @@
           console.log('this is the data radio', data);
       });
 
-      $('#create-challenge-btn').click(async () => {
-        await $.post('/api/challenges/', {data});
-        window.location.replace("http://localhost:8080/api/users/2");
+      $('#create-challenge-btn').click(() => {
+        $.post('/api/challenges/', {data})
+        .then(() => {
+          window.location.replace("http://localhost:8080/api/users/2");
+        })
       });
 
       // Challenge name is added to the data object and populated in the value of the input
