@@ -10,13 +10,16 @@ nav {
     display: flex;
   }
 
-  a {
+  a, button {
     text-decoration: none;
     display: flex;
     color: #ADABC9;
     letter-spacing: .05em;
     font-size: 1rem;
     padding: 10px 8px;
+    background: inherit;
+    border: none;
+    cursor: pointer;
 
     &:hover{
       color: #F6A49C;
