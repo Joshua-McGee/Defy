@@ -35,6 +35,39 @@ module.exports = (db) => {
     }
 
     res.render('profile', templateVar);
+  })
+
+  router.post('/apply', (req, res) => {
+    let {id, challenge_id} = req.body;
+
+    //not sure yet about query check
+    let queryCheck = `
+      SELECT user_id
+      FROM challenges
+      WHERE user_id = $1;
+    `;
+
+    db.query(queryCheck, [id])
+    .then((results) => {
+      if(results.rows.length > 0){
+        let queryString = `
+          INSERT INTO user_challenges (challenge_id, user_id)
+          VALUES ($1, $2);
+        `;
+
+        db.query(queryString, [challenge_id, id])
+        .then(() => {
+          res.json({successful: true});
+        })
+        .catch((err) => {
+          console.log(err);
+          res.json({successful: false});
+        });
+      }else{
+        res.json({successful: false});
+      }
+    });
+
   });
 
   router.get('/:id',async (req, res) => {
@@ -93,28 +126,6 @@ module.exports = (db) => {
     }
     //console.log(templateVar);
     res.render('profile', templateVar);
-  });
-
-  router.post('/login', (req, res) => {
-    const { email } = req.body;
-    let queryString = `
-      SELECT *
-      FROM users
-      WHERE email = $1;
-    `
-    db.query(queryString, [email])
-    .then(users => {
-      if (!users.rows) {
-        res.send({ error: "error" });
-        return;
-      }
-      let user = users.rows[0];
-      req.session.userId = user.id;
-      res.json({user: {name: user.name, email: user.email, id: user.id }})
-    })
-    .catch(err => {
-      return res.json({err});
-    })
   });
 
   router.delete('/', (req, res) => {

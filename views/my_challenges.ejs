@@ -156,7 +156,7 @@
         let data = arr[key];
 
         let content = `
-          <div>Event: ${data.name}</div>
+          <div>Event: ${data.challenge_name}</div>
           <div>Address: ${data.address}</div>
         `;
 
@@ -184,7 +184,7 @@
           modalContent.append(newDiv);
 
           let headerDiv = $('<div>');
-          headerDiv.append($('<label>').text(`${data.name.charAt(0).toUpperCase() + data.name.substring(1, data.name.length)} - ${data.genre}`));
+          headerDiv.append($('<label>').text(`${data.challenge_name.charAt(0).toUpperCase() + data.challenge_name.substring(1, data.challenge_name.length)} - ${data.genre}`));
           headerDiv.append(exit);
           headerDiv.addClass('header');
 
@@ -218,6 +218,16 @@
           let acceptBtn = $('<button>');
           acceptBtn.addClass('accept');
           acceptBtn.text('Accept');
+
+          acceptBtn.click(() => {
+            $.post('/api/users/apply', {
+              id: 3,
+              challenge_id: data.id
+            })
+            .then((result) => {
+              console.log(result);
+            })
+          });
 
           newDiv.append(headerDiv);
           newDiv.append(infoDiv);
@@ -323,6 +333,8 @@
 
     modal.removeClass('hide');
     modal.addClass('show');
+
+
   });
 </script>
   <script src='https://maps.googleapis.com/maps/api/js?key=<%= API_KEY %>&libraries=places&callback=initMap' async defer></script>
