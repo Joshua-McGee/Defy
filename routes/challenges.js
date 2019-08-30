@@ -24,7 +24,19 @@ module.exports = (db) => {
   router.get('/genres/:genre', (req, res) => {
 
     let queryString = `
-    SELECT *
+    SELECT  challenges.id,
+    user_id,
+    location_id,
+    genre,
+    challenges.name as challenge_name,
+    description,
+    date,
+    max_occupancy,
+    locations.name as location_name,
+    lat,
+    long,
+    zoom,
+    address
     FROM challenges
     JOIN locations ON locations.id = location_id
     `;
