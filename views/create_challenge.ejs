@@ -310,7 +310,7 @@
       $('#create-challenge-btn').click(() => {
         $.post('/api/challenges/', {data})
         .then(() => {
-          window.location.replace("http://localhost:8080/api/users/2");
+          window.location.replace(`http://localhost:8080/api/users/${localStorage.getItem('user_id')}`);
         })
       });
 

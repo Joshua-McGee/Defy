@@ -8,6 +8,13 @@ $button-unclicked: #ADABC9;
   width: 775px;
 }
 
+img {
+  margin-top: 1.5em;
+  margin-left: 1em;
+  //margin: 10px;
+  height: 100px;
+  width: 100px;
+}
 .user-info-wrapper {
   display: flex;
   justify-content: space-around;
@@ -42,6 +49,7 @@ $button-unclicked: #ADABC9;
   width: 100%;
 
   .challenges-tab {
+    font-size: 1.5em;
     padding-right: 30px;
     text-decoration: underline;
     background: none;
@@ -49,7 +57,7 @@ $button-unclicked: #ADABC9;
     outline: none;
     cursor: pointer;
     color: $button-unclicked;
-    font-weight: bold;
+    padding-left: 0;
   }
 }
 
@@ -78,15 +86,15 @@ $button-unclicked: #ADABC9;
   }
 
   .data-wrapper {
-
+    // change this to change where the content sits
     width: 100%;
     box-sizing: border-box;
     margin: 10px;
 
     .meta-data {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      // justify-content: space-between;
+      // align-items: center;
       height: 40%;
 
       >span {
@@ -98,14 +106,17 @@ $button-unclicked: #ADABC9;
       }
 
       .challenge-name {
-        font-weight: bold;
-        font-size: 30px;
+        font-weight: 700;
+        font-size: 1.5em;
+        justify-content: space-between;
+        margin-left: 6%;
       }
     }
 
     .description {
       display: flex;
-      align-items: center;
+      margin-left: 6%;
+      //align-items: center;
       height: 60%;
       color: $font-color;
     }
@@ -119,31 +130,32 @@ $button-unclicked: #ADABC9;
         height: 100%;
 
         .delete {
-          background-color: $red;
+          //background-color: $red;
           color: white;
           border: none;
           outline: none;
           border-radius: 500px;
           width: 90%;
           padding: 10px;
+          cursor: pointer;
         }
       }
 }
 
 .red {
-  background-color: red;
+  background-color: #A8435D;
 }
 
 .blue {
-  background-color: blue;
+  background-color: #2841CE;
 }
 
 .green {
-  background-color: green;
+  background-color: #137E2C;
 }
 
 .yellow {
-  background-color: yellow;
+  background-color: #AC6615;
 }
 
 label {

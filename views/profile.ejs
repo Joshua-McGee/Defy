@@ -45,8 +45,8 @@
         <% for(let challenge of data.created ) { %>
           <% console.log(challenge.id) %>
           <!-- couldn't use ternary operator -->
-        <div class="challenge"><div class="label <%= challenge.genre === 'Physical' ? 'red' : ''%> <%= challenge.genre === 'Mental' ? 'green' : ''%> <%= challenge.genre === 'Game' ? 'blue' : ''%> <%= challenge.genre === 'Random' ? 'yellow' : ''%>"></div>
-          <img src="">
+        <div class="challenge"><div class="label <%= challenge.genre === 'Physical' ? 'blue' : ''%> <%= challenge.genre === 'Mental' ? 'green' : ''%> <%= challenge.genre === 'Game' ? 'red' : ''%> <%= challenge.genre === 'Random' ? 'yellow' : ''%>"></div>
+        <img src="<%= (challenge.genre === 'Physical' ? '/images/physical.png' : (challenge.genre === 'Mental' ? '/images/mental.png' : (challenge.genre === 'Game' ? '/images/controller.png' : '/images/random.png')))%>">
           <div class="data-wrapper">
             <div class="meta-data">
               <span class="challenge-name"><%= challenge.name %></span>
@@ -55,7 +55,7 @@
             <div class="description"><%= challenge.description %></div>
           </div>
           <div class="delete-wrapper">
-            <button class="delete" challenge_id="<%= challenge.id %>">Delete</button>
+            <button class="delete <%= challenge.genre === 'Physical' ? 'blue' : ''%> <%= challenge.genre === 'Mental' ? 'green' : ''%> <%= challenge.genre === 'Game' ? 'red' : ''%> <%= challenge.genre === 'Random' ? 'yellow' : ''%>" challenge_id="<%= challenge.id %>">Delete</button>
           </div>
         </div>
         <% } %>
@@ -63,8 +63,8 @@
       <div class="accepted hide">
         <% for(let challenge of data.accepted) { %>
           <div class="challenge">
-            <div class="label <%= challenge.genre === 'Physical' ? 'red' : ''%> <%= challenge.genre === 'Mental' ? 'green' : ''%> <%= challenge.genre === 'Game' ? 'blue' : ''%> <%= challenge.genre === 'Random' ? 'yellow' : ''%>"></div>
-            <img src="">
+            <div class="label <%= challenge.genre === 'Physical' ? 'blue' : ''%> <%= challenge.genre === 'Mental' ? 'green' : ''%> <%= challenge.genre === 'Game' ? 'red' : ''%> <%= challenge.genre === 'Random' ? 'yellow' : ''%>"></div>
+            <img src="<%= (challenge.genre === 'Physical' ? '/images/physical.png' : (challenge.genre === 'Mental' ? '/images/mental.png' : (challenge.genre === 'Game' ? '/images/controller.png' : '/images/random.png')))%>">
             <div class="data-wrapper">
               <div class="meta-data">
                 <span class="challenge-name"><%= challenge.name %></span>
@@ -73,7 +73,7 @@
               <div class="description"><%= challenge.description %></div>
             </div>
             <div class="delete-wrapper">
-              <button class="delete" challenge_id="<%= challenge.id %>" accepted="true">Delete</button>
+              <button class="delete <%= challenge.genre === 'Physical' ? 'blue' : ''%> <%= challenge.genre === 'Mental' ? 'green' : ''%> <%= challenge.genre === 'Game' ? 'red' : ''%> <%= challenge.genre === 'Random' ? 'yellow' : ''%>" challenge_id="<%= challenge.id %>" accepted="true">Delete</button>
             </div>
           </div>
         <% } %>
